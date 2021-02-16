@@ -1,0 +1,26 @@
+#discription{
+    border: 2px solid red;
+    display: block;
+    margin: 0 auto;
+}
+
+.discription_text{
+    text-align: center;
+}
+
+#startLink{
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    text-decoration: none;
+}
+
+#startLink:hover{
+    color: aqua;
+}
+
+.clear{
+    clear: both;
+    margin: 0;
+    padding: 0;
+}
