@@ -1,29 +1,32 @@
-#playcanvas{
-    border: 2px solid red;
-    display: block;
-    margin: 0 auto;
-    background-color: black;
+#playcanvas {
+  border: 2px solid red;
+  display: block;
+  margin: 0 auto;
+  background-color: black;
 }
-#lifeBlock{
-    border: 2px solid red;
-    float: left;
-    clear: both;
-    z-index: 999;
-    position: relative;
-    right: -34px;
-    top: 10px;
+#lifeBlock {
+  border: 2px solid red;
+  float: left;
+  clear: both;
+  z-index: 999;
+  position: relative;
+  right: -34px;
+  top: 10px;
 }
-#scoreBlock{
-    border: 2px solid red;
-    float: right;
-    clear: right;
-    z-index: 999;
-    position: relative;
-    right: 90px;
-    top: 10px;
+#scoreBlock {
+  border: 2px solid red;
+  float: right;
+  clear: right;
+  z-index: 999;
+  position: relative;
+  right: 90px;
+  top: 10px;
 }
-.clear{
-    clear: both;
-    margin: 0;
-    padding: 0;
+.progress-bar{
+  width: 100%;
+}
+.clear {
+  clear: both;
+  margin: 0;
+  padding: 0;
 }

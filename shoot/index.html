@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
     <link rel="stylesheet" href="css/style.css">
     <title>飞行玉小游戏</title>
 </head>
@@ -13,18 +17,25 @@
     <audio src="assets/audios/Laura Shigihara - Brainiac Maniac.mp3" id="bgm" preload="auto"></audio>
     <audio src="assets/audios/bulletBiu.wav" id="biuAudio" preload="auto"></audio>
     <audio src="assets/audios/explode.wav" id="explodeAudio" preload="auto"></audio>
+    <div class="progress">
+        <div class="progress-bar progress-bar-success"  id="progress-bar" role="progressbar"
+             aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+             v-bind:style="styleObject">
+            <span class="sr-only"></span>
+        </div>
+    </div>
     <canvas width='500' height="500" id="playcanvas">
         您的浏览器不支持Canvas！
     </canvas>
     <div id="lifeBlock">
-        <p>
-            你的生命：<span id="life"></span>
-        </p>
+        <span class="label label-success"  id="life" v-bind:style="styleObject">
+            你的生命：<span>{{life}}</span>
+        </span>
     </div>
     <div id="scoreBlock">
-        <p>
-            你的得分：<span id="score"></span>
-        </p>
+        <span class="label label-info"  id="score" v-bind:style="styleObject">
+            你的得分：<span>{{score}}</span>
+        </span>
     </div>
 
     <img class="explode" src="assets/imgs/explode/1.png" alt="你的浏览器不支持img标签" hidden></img>
@@ -40,6 +51,9 @@
 
 </body>
 <script src="js/jquery-3.5.1.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/vueAttach.js"></script>
 <script src="js/trycanvas.js"></script>
 <script src="js/plane.js"></script>
 <script src="js/trytouch.js"></script>

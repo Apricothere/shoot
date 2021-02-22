@@ -1,4 +1,12 @@
 var control = control || {};
+control.r = function (range) {
+    return Math.random() * range;
+}
+control.toPercent=function(point){
+    var str=Number(point*100).toFixed();
+    str+="%";
+    return str;
+}
 
 control.boomAt = function (x, y, r) {
     var imgs = document.getElementsByClassName('explode');
@@ -57,15 +65,17 @@ control.replayAudioEffect = function (id) {
 
 control.updateLife = function (life, addNum) {
     life += addNum;
-    let lifeNum = document.getElementById("life");
-    lifeNum.innerText = String(life);
+    //let lifeNum = document.getElementById("life");
+    //lifeNum.innerText = String(life);
+    vueAttach.life.life=life;
     return life;
 }
 
 control.updateScore = function (score, addNum) {
     score += addNum;
-    let scoreNum = document.getElementById("score");
-    scoreNum.innerText = String(score);
+    //let scoreNum = document.getElementById("score");
+    //scoreNum.innerText = String(score);
+    vueAttach.score.score=score;
     return score;
 }
 
@@ -103,6 +113,11 @@ control.stage.prototype.nextStage = function (enemyArr, count) {
     else {
         if (count - this.enterTime > this.lastTime) {
             control.stageList[this.index + 1].enterTime = count;
+            if(this.index+1==control.stageList.length - 1) 
+            {
+                vueAttach.progress.styleObject.display='block';
+                vueAttach.progress.styleObject.width="100%";
+            }
             return control.stageList[this.index + 1];
         }
         else return this;
@@ -114,9 +129,7 @@ control.initStage = function () {
     control.stageList=[];
     for (let i = 0; i < 7; i++) {
         let stage = new control.stage(i, 2, 1500, false)
-        console.log(stage);
         control.stageList.push(stage);
-        console.log(control.stageList);
     }
     control.stageList[0].isLastTime=true;
     control.stageList[1].maxEnemyCount=1;
@@ -137,7 +150,7 @@ var playTime = setInterval(function () {
     //console.log('counter');
     count++;
     trycvs.c.clearRect(0, 0, trycvs.canvas.width, trycvs.canvas.height);
-    if (count == 1) { control.initialize(); console.log(control.currentStage) };
+    if (count == 1) { control.initialize(); };
     if (bgm.currentTime == 0) bgm.play();
     plane.enemyBirth(count, control.currentStage);
     control.currentStage = control.currentStage.nextStage(plane.enemyArr, count);

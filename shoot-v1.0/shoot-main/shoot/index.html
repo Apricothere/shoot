@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>飞行玉小游戏</title>
+</head>
+
+<body>
+    <audio src="assets/audios/Laura Shigihara - Brainiac Maniac.mp3" id="bgm" preload="auto"></audio>
+    <audio src="assets/audios/bulletBiu.wav" id="biuAudio" preload="auto"></audio>
+    <audio src="assets/audios/explode.wav" id="explodeAudio" preload="auto"></audio>
+    <canvas width='500' height="500" id="playcanvas">
+        您的浏览器不支持Canvas！
+    </canvas>
+    <div id="lifeBlock">
+        <p>
+            你的生命：<span id="life"></span>
+        </p>
+    </div>
+    <div id="scoreBlock">
+        <p>
+            你的得分：<span id="score"></span>
+        </p>
+    </div>
+
+    <img class="explode" src="assets/imgs/explode/1.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img class="explode" src="assets/imgs/explode/2.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img class="explode" src="assets/imgs/explode/3.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img class="explode" src="assets/imgs/explode/5.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img class="explode" src="assets/imgs/explode/6.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img class="explode" src="assets/imgs/explode/8.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img class="explode" src="assets/imgs/explode/10.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img class="explode" src="assets/imgs/explode/11.png" alt="你的浏览器不支持img标签" hidden></img>
+
+    <div class="clear"></div>
+
+</body>
+<script src="js/jquery-3.5.1.js"></script>
+<script src="js/trycanvas.js"></script>
+<script src="js/plane.js"></script>
+<script src="js/trytouch.js"></script>
+<script src="js/control.js"></script>
+<script src="js/boom.js"></script>
+</html>

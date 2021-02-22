@@ -1,26 +1,44 @@
-#discription{
-    border: 2px solid red;
-    display: block;
-    margin: 0 auto;
+#discription {
+  border: 2px solid red;
+  display: block;
+  margin: 0 auto;
 }
 
-.discription_text{
+.discription_text {
+  text-align: center;
+}
+
+#startLink {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  text-decoration: none;
+}
+
+#startLink:hover {
+  color: aqua;
+}
+
+.chooseList {
+  position: fixed;
+  top: 30%;
+  right: 0%;
+}
+
+.btn-mainStage{
+    height: 100px;
+    width: 250px;
     text-align: center;
+    font-size: 30px;
 }
-
-#startLink{
-    text-align: center;
-    display: block;
-    margin: 0 auto;
-    text-decoration: none;
+.modal-body{
+    background-color: aqua;
 }
-
-#startLink:hover{
-    color: aqua;
+.modalCloseButton{
+    font-size: 10px;
 }
-
-.clear{
-    clear: both;
-    margin: 0;
-    padding: 0;
+.clear {
+  clear: both;
+  margin: 0;
+  padding: 0;
 }

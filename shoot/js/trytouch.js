@@ -1,8 +1,6 @@
 var trytouch = trytouch || {};
 trytouch.randomColor = '#' + parseInt(Math.random() * 0xffffff).toString(16);
-trytouch.r = function (range) {
-    return Math.random() * range;
-}
+
 var x = 100;
 var y = 100;
 var xspeed = 1.5;
@@ -11,11 +9,11 @@ trytouch.ballArr = [];
 trytouch.ball = function (part, damage, x, y, r, xspeed, yspeed,angleSpeed=0,capture=false,color='red') {
     this.part = part;
     this.damage = damage;
-    this.x = x;//||trytouch.r(trycvs.canvas.width);
-    this.y = y;//||trytouch.r(trycvs.canvas.height);
-    this.r = r;//||trytouch.r(10)+5;
-    this.xspeed = xspeed;//||trytouch.r(5)+1.5;
-    this.yspeed = yspeed;//||trytouch.r(5)+1.5;
+    this.x = x;//||control.r(trycvs.canvas.width);
+    this.y = y;//||control.r(trycvs.canvas.height);
+    this.r = r;//||control.r(10)+5;
+    this.xspeed = xspeed;//||control.r(5)+1.5;
+    this.yspeed = yspeed;//||control.r(5)+1.5;
     this.capture=capture;
     if(this.xspeed==0) this.angle=this.yspeed>0?-90:90;
     else {
@@ -69,6 +67,11 @@ trytouch.ball.prototype.death = function (index, mustdie = false) {
             let distance = Math.sqrt((this.x - enemy.x) ** 2 + (this.y - enemy.y) ** 2);
             if (distance <= this.r + enemy.r) {
                 enemy.life -= this.damage;
+                if(enemy.type=='006') 
+                {
+                    let percentage=enemy.life/enemy.maxlife;
+                    vueAttach.progress.styleObject.width=control.toPercent(percentage);
+                }
                 trytouch.ballArr.splice(index, 1);
                 return;
             }
