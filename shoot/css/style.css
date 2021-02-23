@@ -29,7 +29,12 @@
   z-index: 999;
   position: relative;
   right: -34px;
-  top: -150px;
+  top: -180px;
+}
+.skillBlock{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 30px;
 }
 .progress-bar{
   width: 100%;

@@ -38,9 +38,13 @@ vueAttach.score=new Vue({
 vueAttach.skill=new Vue({
     el:"#skillSet",
     data:{
-        skill:['shizuka','空','空'],
+        skill1:'空',
+        skill2:'空',
+        skill3:'空',
         styleObject: {
-            'font-size':'20px'
+            'font-size':'20px',
+            'width': '30px',
+            'text-align':'center'
           }
     },
     methods:{

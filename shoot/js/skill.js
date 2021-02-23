@@ -18,9 +18,8 @@ skill.skill.prototype.go = function (count) {
   this.enterTime = count;
   this.on = true;
   this.ready = false;
-  vueAttach.skill.skill[this.index] = '发动中...';
-  if (this.name == "shizuka") {
-    alert("szk");
+  skill.changeSkillSet(this.index,'发动中...');
+  if (this.name == "静谧") {
     for (let i = 1; i < trytouch.ballArr.length; i++) {
       trytouch.ballArr[i].stateList.push("shizuka");
       trytouch.ballArr[i].xspeed *= 0.1;
@@ -34,8 +33,7 @@ skill.skill.prototype.left = function (count) {
   this.on = false;
   this.coolDown = this.maxCoolDown;
   this.maintain = this.maxMaintain;
-  if (this.name == "shizuka") {
-    alert("szkleft");
+  if (this.name == "静谧") {
     for (let i = 1; i < trytouch.ballArr.length; i++) {
       trytouch.ballArr[i].xspeed *= 2;
       trytouch.ballArr[i].yspeed *= 2;
@@ -47,10 +45,10 @@ skill.skill.prototype.left = function (count) {
 skill.skill.prototype.coolDownUpdate = function () {
   if (this.coolDown > 0) {
     this.coolDown -= 1;
-    vueAttach.skill.skill[this.index] = this.coolDown;
+    skill.changeSkillSet(this.index,this.coolDown);
   } else {
     this.ready = true;
-    vueAttach.skill.skill[this.index] = this.name;
+    skill.changeSkillSet(this.index,this.name);
   }
 };
 
@@ -77,5 +75,18 @@ skill.keySkill = function (count) {
     if (currentSkill.ready) currentSkill.go();
   };
 };
-skill.shizuka = new skill.skill("shizuka", "self", 1000, 2000, 0);
+
+skill.changeSkillSet = function (index, value) {
+  if(index==0){
+    vueAttach.skill.skill1=value;
+  }
+  else if(index==2){
+    vueAttach.skill.skill2=value;
+  }
+  else if(index==3){
+    vueAttach.skill.skill3=value;
+  }
+};
+
+skill.shizuka = new skill.skill("静谧", "self", 1000, 2000, 0);
 skill.skillList.push(skill.shizuka);
