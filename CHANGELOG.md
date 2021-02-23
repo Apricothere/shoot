@@ -1,6 +1,10 @@
 # CHANGELOG
 This repository provides a Flight Shooting Game demo developed with HTML5.
 
+## Version 1.02
+现在按住Shift键可以让玉减速；
+添加技能栏，在冷却完成后，按z键释放第一个技能；
+
 ## Version 1.01
 制作主菜单；
 制作boss血条，现在对战boss时画面上方会显示其血条；

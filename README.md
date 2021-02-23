@@ -2,7 +2,7 @@
 This repository provides a Flight Shooting Game demo developed with HTML5.
 
 ## Version
-1.01
+1.02
 1.0（归档）
 
 ## Method of application
