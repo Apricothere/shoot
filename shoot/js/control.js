@@ -181,6 +181,12 @@ var playTime = setInterval(function () {
     self.show(protectStartCount, count);
     self.shoot(count);
     self.death();
+    //skill
+    for(let i=0;i<skill.skillList.length;i++){
+        let tmpSkill=skill.skillList[i];
+        tmpSkill.update();
+    }
+    //skill.keySkill();
     //enemy
     for (let i = 0; i < plane.enemyArr.length; i++) {
         let enemy = plane.enemyArr[i];

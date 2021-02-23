@@ -167,6 +167,7 @@ plane.enemyPlane.prototype.shoot = function (count) {
   }
 };
 
+plane.isPressing=false;
 plane.selfMove = function (self) {
   document.onkeydown = function (e) {
     if (e.key == "ArrowLeft") {
@@ -181,6 +182,23 @@ plane.selfMove = function (self) {
     if (e.key == "ArrowDown") {
       self.yspeed = 1;
     }
+    if (e.key == "Shift") {
+      plane.isPressing=true;
+    }
+    if(plane.isPressing){
+      if(Math.abs(self.xspeed==1)) self.xspeed /= 2;
+      if(Math.abs(self.yspeed==1)) self.yspeed /= 2;
+    }
+    let currentSkill;
+    if (e.key == "z" && skill.skillList.length >= 1) {
+      currentSkill = skill.skillList[0];
+    } else if (e.key == "x" && skill.skillList.length >= 2) {
+      currentSkill = skill.skillList[1];
+    } else if (e.key == "c" && skill.skillList.length >= 3) {
+      currentSkill = skill.skillList[2];
+    }
+    else return;
+    if(currentSkill.ready) currentSkill.go();
   };
   document.onkeyup = function (e) {
     if (e.key == "ArrowLeft") {
@@ -194,6 +212,9 @@ plane.selfMove = function (self) {
     }
     if (e.key == "ArrowDown") {
       self.yspeed = 0;
+    }
+    if (e.key == "Shift") {
+      plane.isPressing=false;
     }
   };
   self.x += self.xspeed;
