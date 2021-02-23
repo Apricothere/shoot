@@ -34,3 +34,15 @@ vueAttach.score=new Vue({
     methods:{
     }
 });
+
+vueAttach.skill=new Vue({
+    el:"#skillSet",
+    data:{
+        skill:['shizuka','空','空'],
+        styleObject: {
+            'font-size':'20px'
+          }
+    },
+    methods:{
+    }
+});

@@ -22,6 +22,15 @@
   right: 90px;
   top: 10px;
 }
+#skillSet {
+  border: 2px solid red;
+  float: left;
+  clear: both;
+  z-index: 999;
+  position: relative;
+  right: -34px;
+  top: -150px;
+}
 .progress-bar{
   width: 100%;
 }
