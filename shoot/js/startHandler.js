@@ -2,7 +2,7 @@ $(function () {
   $("#startGame").click(function () {
     $(this).button('loading').delay(3000).queue(function() {
         $(this).button('reset');
-    window.location.href="index.html"
+    window.location.href="frontpage.html"
     }); 
   });
 });

@@ -167,7 +167,7 @@ plane.enemyPlane.prototype.shoot = function (count) {
   }
 };
 
-plane.isPressing=false;
+plane.isPressing = false;
 plane.selfMove = function (self) {
   document.onkeydown = function (e) {
     if (e.key == "ArrowLeft") {
@@ -183,11 +183,11 @@ plane.selfMove = function (self) {
       self.yspeed = 1;
     }
     if (e.key == "Shift") {
-      plane.isPressing=true;
+      plane.isPressing = true;
     }
-    if(plane.isPressing){
-      if(Math.abs(self.xspeed==1)) self.xspeed /= 2;
-      if(Math.abs(self.yspeed==1)) self.yspeed /= 2;
+    if (plane.isPressing) {
+      if (Math.abs(self.xspeed == 1)) self.xspeed /= 2;
+      if (Math.abs(self.yspeed == 1)) self.yspeed /= 2;
     }
     let currentSkill;
     if (e.key == "z" && skill.skillList.length >= 1) {
@@ -196,9 +196,8 @@ plane.selfMove = function (self) {
       currentSkill = skill.skillList[1];
     } else if (e.key == "c" && skill.skillList.length >= 3) {
       currentSkill = skill.skillList[2];
-    }
-    else return;
-    if(currentSkill.ready) currentSkill.go();
+    } else return;
+    if (currentSkill.ready) currentSkill.go();
   };
   document.onkeyup = function (e) {
     if (e.key == "ArrowLeft") {
@@ -214,7 +213,7 @@ plane.selfMove = function (self) {
       self.yspeed = 0;
     }
     if (e.key == "Shift") {
-      plane.isPressing=false;
+      plane.isPressing = false;
     }
   };
   self.x += self.xspeed;
@@ -237,84 +236,165 @@ plane.selfBirth = function (count) {
   }
 };
 
-plane.enemyBirth = function (count, stage) {
-  if (stage.clear && !stage.isLastTime) return;
-  if (stage.index == 0) {
-    //公主
-    if (count % 200 == 0 && plane.enemyArr.length < 2) {
-      let enemy = new plane.enemyPlane(
-        "001",
-        100,
-        control.r(420) + 40,
-        40,
-        20,
-        0,
-        2
-      );
-      plane.enemyArr.push(enemy);
-      enemy.show();
+plane.enemyBirth = function (level, count, stage) {
+  if (level == 1) {
+    if (stage.clear && !stage.isLastTime) return;
+    if (stage.index == 0) {
+      //公主
+      if (count % 200 == 0 && plane.enemyArr.length < 2) {
+        let enemy = new plane.enemyPlane(
+          "001",
+          100,
+          control.r(420) + 40,
+          40,
+          20,
+          0,
+          2
+        );
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else if (stage.index == 1) {
+      if (count % 200 == 0) {
+        //圆阵
+        let enemy = new plane.enemyPlane("005", 100, 250, 40, 20, 0, 2);
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else if (stage.index == 2) {
+      //毒蛇
+      if (count % 200 == 0 && plane.enemyArr.length < 3) {
+        let enemy = new plane.enemyPlane(
+          "004",
+          100,
+          control.r(420) + 40,
+          40,
+          20,
+          0,
+          2
+        );
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else if (stage.index == 3) {
+      //方阵
+      if (count % 200 == 0 && plane.enemyArr.length == 0) {
+        let enemy = new plane.enemyPlane("003-1", 100, 100, 40, 20, 0, 2);
+        plane.enemyArr.push(enemy);
+        enemy.show();
+        let enemy2 = new plane.enemyPlane("003-2", 100, 400, 40, 20, 0, 2);
+        plane.enemyArr.push(enemy2);
+        enemy2.show();
+      } else return;
+    } else if (stage.index == 4) {
+      //钻石
+      if (count % 200 == 0 && plane.enemyArr.length < 2) {
+        let enemy = new plane.enemyPlane(
+          "002",
+          100,
+          control.r(420) + 40,
+          40,
+          20,
+          0,
+          2
+        );
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else if (stage.index == 5) {
+      //boss
+      if (!stage.clear) {
+        alert("警告：boss即将出现");
+        stage.clear = true;
+      } else return;
+    } else if (stage.index == 6) {
+      //boss
+      if (count % 200 == 0) {
+        let enemy = new plane.enemyPlane("006", 1000, 250, 40, 20, 0, 2);
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
     } else return;
-  } else if (stage.index == 1) {
-    if (count % 200 == 0) {
-      //圆阵
-      let enemy = new plane.enemyPlane("005", 100, 250, 40, 20, 0, 2);
-      plane.enemyArr.push(enemy);
-      enemy.show();
+  }
+  else if(level==2){
+    if (stage.clear && !stage.isLastTime) return;
+    if (stage.index == 0) {
+      //公主
+      if (count % 200 == 0 && plane.enemyArr.length < 2) {
+        let enemy = new plane.enemyPlane(
+          "001",
+          100,
+          control.r(420) + 40,
+          40,
+          20,
+          0,
+          2
+        );
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else if (stage.index == 1) {
+      if (count % 200 == 0) {
+        //圆阵
+        let enemy = new plane.enemyPlane("005", 100, 250, 40, 20, 0, 2);
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else if (stage.index == 2) {
+      //毒蛇
+      if (count % 200 == 0 && plane.enemyArr.length < 3) {
+        let enemy = new plane.enemyPlane(
+          "004",
+          100,
+          control.r(420) + 40,
+          40,
+          20,
+          0,
+          2
+        );
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else if (stage.index == 3) {
+      //方阵
+      if (count % 200 == 0 && plane.enemyArr.length == 0) {
+        let enemy = new plane.enemyPlane("003-1", 100, 100, 40, 20, 0, 2);
+        plane.enemyArr.push(enemy);
+        enemy.show();
+        let enemy2 = new plane.enemyPlane("003-2", 100, 400, 40, 20, 0, 2);
+        plane.enemyArr.push(enemy2);
+        enemy2.show();
+      } else return;
+    } else if (stage.index == 4) {
+      //钻石
+      if (count % 200 == 0 && plane.enemyArr.length < 2) {
+        let enemy = new plane.enemyPlane(
+          "002",
+          100,
+          control.r(420) + 40,
+          40,
+          20,
+          0,
+          2
+        );
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else if (stage.index == 5) {
+      //boss
+      if (!stage.clear) {
+        alert("警告：boss即将出现");
+        stage.clear = true;
+      } else return;
+    } else if (stage.index == 6) {
+      //boss
+      if (count % 200 == 0) {
+        let enemy = new plane.enemyPlane("006", 1000, 250, 40, 20, 0, 2);
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
     } else return;
-  } else if (stage.index == 2) {
-    //毒蛇
-    if (count % 200 == 0 && plane.enemyArr.length < 3) {
-      let enemy = new plane.enemyPlane(
-        "004",
-        100,
-        control.r(420) + 40,
-        40,
-        20,
-        0,
-        2
-      );
-      plane.enemyArr.push(enemy);
-      enemy.show();
-    } else return;
-  } else if (stage.index == 3) {
-    //方阵
-    if (count % 200 == 0 && plane.enemyArr.length == 0) {
-      let enemy = new plane.enemyPlane("003-1", 100, 100, 40, 20, 0, 2);
-      plane.enemyArr.push(enemy);
-      enemy.show();
-      let enemy2 = new plane.enemyPlane("003-2", 100, 400, 40, 20, 0, 2);
-      plane.enemyArr.push(enemy2);
-      enemy2.show();
-    } else return;
-  } else if (stage.index == 4) {
-    //钻石
-    if (count % 200 == 0 && plane.enemyArr.length < 2) {
-      let enemy = new plane.enemyPlane(
-        "002",
-        100,
-        control.r(420) + 40,
-        40,
-        20,
-        0,
-        2
-      );
-      plane.enemyArr.push(enemy);
-      enemy.show();
-    } else return;
-  } else if (stage.index == 5) {
-    //boss
-    if (!stage.clear) {
-      alert("警告：boss即将出现");
-      stage.clear = true;
-    } else return;
-  } else if (stage.index == 6) {
-    //boss
-    if (count % 200 == 0) {
-      let enemy = new plane.enemyPlane("006", 1000, 250, 40, 20, 0, 2);
-      plane.enemyArr.push(enemy);
-      enemy.show();
-    } else return;
-  } else return;
+  }
   stage.enemyCount++;
   if (stage.enemyCount >= stage.maxEnemyCount) stage.clear = true;
 };
