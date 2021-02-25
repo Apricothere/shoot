@@ -10,8 +10,7 @@ control.request = (function (){
     }
     return obj;
 })()
-
-console.log(control.request.level);
+control.callList = control.request.level.split(',');
 
 
 control.r = function (range) {
@@ -177,7 +176,9 @@ var count = 0;
 var protectStartCount = 0;
 control.score = 0;
 control.currentStage = 0;
-control.level = control.request.level;
+control.level = parseInt(control.callList[0]);
+skill.skillIdList= control.callList.slice(1,7).map(Number);
+skill.installSkillList(skill.skillIdList);
 var playTime = setInterval(function () {
   //console.log('counter');
   count++;

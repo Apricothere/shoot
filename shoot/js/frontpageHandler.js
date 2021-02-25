@@ -5,7 +5,7 @@ $(function () {
       .delay(3000)
       .queue(function () {
         $(this).button("reset");
-        let level = 1;
+        let level = [1,101,102,0,0,203,0];
         window.location.href = "index.html?level=" + level;
       });
   });
@@ -18,6 +18,8 @@ $(function () {
       .queue(function () {
         $(this).button("reset");
         let level = 2;
+        skillList.push('hot');
+        alert(skillList);
         window.location.href = "index.html?level=" + level;
       });
   });

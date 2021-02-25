@@ -124,7 +124,7 @@ plane.enemyPlane.prototype.death = function (index) {
 
 plane.enemyPlane.prototype.shoot = function (count) {
   if (this.type == "self") {
-    if (count % 10 == 0) {
+    if (count % 20 == 0) {
       trytouch.shootBiuBiu(this.x, this.y - this.r);
     }
   } else if (this.type == "001") {

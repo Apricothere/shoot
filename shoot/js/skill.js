@@ -1,6 +1,9 @@
 var skill = skill || {};
-skill.skillList = [];
-skill.skill = function (name, part, coolDown, maintain, cost) {
+skill.skillList=[];
+skill.passiveList=[];
+skill.skillIdList=[];
+skill.skill = function (id,name, part, coolDown, maintain, cost) {
+  this.id=id;
   this.name = name;
   this.part = part;
   this.coolDown = coolDown;
@@ -77,16 +80,49 @@ skill.keySkill = function (count) {
 };
 
 skill.changeSkillSet = function (index, value) {
-  if(index==0){
+  if(index == 0){
     vueAttach.skill.skill1=value;
   }
-  else if(index==2){
+  else if(index==1){
     vueAttach.skill.skill2=value;
   }
-  else if(index==3){
+  else if(index==2){
     vueAttach.skill.skill3=value;
   }
 };
 
-skill.shizuka = new skill.skill("静谧", "self", 1000, 2000, 0);
-skill.skillList.push(skill.shizuka);
+
+skill.passive= function (id,name, part, coolDown, maintain, cost, type) {
+  skill.skill.call(id,name, part, coolDown, maintain, cost)
+  this.type=type;
+};
+skill.passive.prototype = Object.create(skill.skill.prototype)//核心代码
+skill.passive.prototype.constructor = skill.passive//核心代码
+
+skill.passive.prototype.update=function(){
+  console.log("hhh");
+}
+
+
+skill.shizuka = new skill.skill(101,"静谧", "self", 1000, 2000, 0);
+skill.hot =  new skill.skill(102,"高热","self",1000,1000,0);
+skill.passivePrincess=new skill.passive(203,"扇形弹幕","self",0,1000,0,'bullet');
+//skill.skillList.push(skill.shizuka);
+skill.skillMap=new Map();
+skill.skillMap.set(101,skill.shizuka);
+skill.skillMap.set(102,skill.hot);
+skill.skillMap.set(203,skill.passivePrincess);
+skill.installSkillList=function(skillIdList){
+  for(let i=0;i<3;i++){
+    if(skillIdList[i]==0) continue;
+    tmpSkill = skill.skillMap.get(skillIdList[i]);
+    tmpSkill.index=i;
+    skill.skillList.push(tmpSkill);
+  }
+  for(let i=3;i<6;i++){
+    if(skillIdList[i]==0) continue;
+    tmpSkill = skill.skillMap.get(skillIdList[i]);
+    tmpSkill.index=i;
+    skill.passiveList.push(tmpSkill);
+  }
+}
