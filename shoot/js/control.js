@@ -98,8 +98,8 @@ control.initialize = function (level) {
   plane.selfBirth(1);
   var bgm = document.getElementById("bgm");
   bgm.loop = true;
-  //var background=document.getElementById("background");
-  //background.loop=true;
+  var background=document.getElementById("background");
+  background.loop=true;
   control.updateLife(plane.self.life, 0);
   control.updateScore(control.score, 0);
 };
@@ -187,7 +187,7 @@ var playTime = setInterval(function () {
     control.initialize(control.level);
   }
   if (bgm.currentTime == 0) bgm.play();
-  //if (background.currentTime == 0) background.play();
+  if (background.currentTime == 0) background.play();
   plane.enemyBirth(control.level, count, control.currentStage);
   control.currentStage = control.currentStage.nextStage(plane.enemyArr, count);
 

@@ -2,7 +2,8 @@
   border: 2px solid red;
   display: block;
   margin: 0 auto;
-  background-color: black;
+  background-color: rgba(255, 255,255, 0);
+  z-index: 886;
 }
 #lifeBlock {
   border: 2px solid red;
@@ -30,6 +31,13 @@
   position: relative;
   right: -34px;
   top: -180px;
+}
+#background{
+  position: relative;
+  top: 542px;
+  display: block;
+  margin: 0 auto;
+  z-index: -1;
 }
 .skillBlock{
   margin-top: 10px;

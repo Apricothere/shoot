@@ -186,8 +186,8 @@ plane.selfMove = function (self) {
       plane.isPressing = true;
     }
     if (plane.isPressing) {
-      if (Math.abs(self.xspeed == 1)) self.xspeed /= 2;
-      if (Math.abs(self.yspeed == 1)) self.yspeed /= 2;
+      if (Math.abs(self.xspeed) >= 0.7) self.xspeed /= 2;
+      if (Math.abs(self.yspeed) >= 0.7) self.yspeed /= 2;
     }
     let currentSkill;
     if (e.key == "z" && skill.skillList.length >= 1) {

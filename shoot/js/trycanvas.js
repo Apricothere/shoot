@@ -30,6 +30,7 @@ trycvs.drawArc = function (c, x, y, r, rad1, rad2, anti, strokeStyle, fillStyle,
 trycvs.canvas = $(`#playcanvas`)[0];
 //trycvs.canvas=document.querySelector(`#playcanvas`);
 trycvs.c = trycvs.canvas.getContext('2d');
+trycvs.c.fillStyle='rgba(255,255,255,0)';
 trycvs.beginPoint = new Point(100, 100);
 trycvs.endPoint = new Point(200, 200);
 trycvs.beginPoint.x = 100;
