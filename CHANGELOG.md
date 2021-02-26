@@ -1,6 +1,11 @@
 # CHANGELOG
 This repository provides a Flight Shooting Game demo developed with HTML5.
 
+## Version 1.04
+整合所有元素到主页面上，但尚未排版；
+制作技能学习和选择系统；
+制作关卡系统；
+
 ## Version 1.02
 现在按住Shift键可以让玉减速；
 添加技能栏，在冷却完成后，按z键释放第一个技能；
