@@ -4,12 +4,13 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
     
         {
             "type": "pwa-chrome",
             "request": "launch",
-            "name": "Open start.html",
-            "file": "d:\\github\\shoot\\shoot\\start.html"
+            "name": "Open index.html",
+            "file": "d:\\github\\shoot\\shoot\\index.html"
         }
     ]
 }

@@ -52,6 +52,182 @@
         </div>
     </div>
 
+
+    <div id="gameMenu">
+        <div class="levelList">
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-primary btn-mainStage" id="level1">
+                    <input type="radio" name="options" id="option1" data-loading-text="加载中..." />1 迷雾 </label><br />
+                <label class="btn btn-primary btn-mainStage" id="level2">
+                    <input type="radio" name="options" id="option2" data-loading-text="加载中..." />
+                    2 惊变 </label><br />
+                <label class="btn btn-primary btn-mainStage" id="level3">
+                    <input type="radio" name="options" id="option3" data-loading-text="加载中..." />
+                    3 噩梦 </label><br />
+            </div>
+        </div>
+
+        <div class="chooseList">
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-primary btn-mainStage" id="skillTree">
+                    <input type="radio" name="options" id="option1" /> 技能学习 </label><br />
+                <label class="btn btn-primary btn-mainStage" id="skillAllo">
+                    <input type="radio" name="options" id="option2" /> 技能分配 </label><br />
+                <label class="btn btn-primary btn-mainStage" id="gameIntro">
+                    <input type="radio" name="options" id="option3" /> 游戏规则 </label><br />
+                <label class="btn btn-primary btn-mainStage" id="about">
+                    <input type="radio" name="options" /> 关于 </label><br />
+            </div>
+        </div>
+
+        <div class="modal" id="gameIntroModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title">游戏规则</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p class="discription_text">
+                            <strong>游戏规则：</strong><br />
+                            使用方向键控制你的玉移动，躲避子弹，消灭敌人，获取分数，走向胜利。<br />
+                            如果你被打中会由红色变为绿色，并进入短暂的无敌时间。
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default modalCloseButton" data-dismiss="modal">
+                            关闭
+                        </button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
+        <div class="modal" id="aboutModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title">关于此游戏</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p class="discription_text">
+                            <strong>飞行玉小游戏</strong><br />
+                            作者: 杏花游侠，Mos-Hu<br />
+                            版本: 1.01<br />
+                        </p>
+                        <hr />
+                        <p class="discription_text">
+                            BGM：Brainiac Maniac - Laura Shigihara<br />
+                            图片及声音资源来自网络
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default modalCloseButton" data-dismiss="modal">
+                            关闭
+                        </button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
+        <div class="modal" id="skillTreeModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title">技能学习</h4>
+                        <h5 id="skillPoint" v-bind:style="styleObject">剩余点数：{{skillPoint}}</h5>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="chooseList">
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-primary btn-mainStage" id="skill101">
+                                    <input type="radio" name="options" /> 静谧 </label><br />
+                                <label class="btn btn-primary btn-mainStage" id="skill102">
+                                    <input type="radio" name="options" /> 高热 </label><br />
+                                <label class="btn btn-primary btn-mainStage" id="skill103">
+                                    <input type="radio" name="options" /> 齐射 </label><br />
+                                <label class="btn btn-primary btn-mainStage" id="skill104">
+                                    <input type="radio" name="options" /> 伏波 </label><br />
+                                <label class="btn btn-primary btn-mainStage" id="skill105">
+                                    <input type="radio" name="options" /> 穿杨 </label><br />
+                                <label class="btn btn-primary btn-mainStage" id="skill106">
+                                    <input type="radio" name="options" /> 铁壁 </label><br />
+                                <label class="btn btn-primary btn-mainStage" id="skill107">
+                                    <input type="radio" name="options" /> 破灭 </label><br />
+                                <label class="btn btn-primary btn-mainStage" id="skill108">
+                                    <input type="radio" name="options" /> 圣光 </label><br />
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default modalCloseButton" data-dismiss="modal">
+                            关闭
+                        </button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
+        <div class="modal" id="skillAlloModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title">技能分配</h4>
+                        <h5 id="skillPoint" v-bind:style="styleObject">剩余点数：{{skillPoint}}</h5>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="alloList">
+                            <select name="province" class="province" id="province1">
+                                <option>--请选择技能--</option>
+                            </select>
+                            <select name="province" class="province" id="province2">
+                                <option>--请选择技能--</option>
+                            </select>
+                            <select name="province" class="province" id="province3">
+                                <option>--请选择技能--</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default modalCloseButton" data-dismiss="modal">
+                            关闭
+                        </button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
+    </div>
+
+
     <img class="explode" src="assets/imgs/explode/1.png" alt="你的浏览器不支持img标签" hidden></img>
     <img class="explode" src="assets/imgs/explode/2.png" alt="你的浏览器不支持img标签" hidden></img>
     <img class="explode" src="assets/imgs/explode/3.png" alt="你的浏览器不支持img标签" hidden></img>
@@ -73,5 +249,7 @@
 <script src="js/trytouch.js"></script>
 <script src="js/skill.js"></script>
 <script src="js/control.js"></script>
+<script src="js/frontpageHandler.js"></script>
+
 
 </html>

@@ -35,6 +35,18 @@ vueAttach.score=new Vue({
     }
 });
 
+vueAttach.skillPoint=new Vue({
+    el:"#skillPoint",
+    data:{
+        skillPoint:100000,
+        styleObject: {
+            'font-size':'20px'
+          }
+    },
+    methods:{
+    }
+});
+
 vueAttach.skill=new Vue({
     el:"#skillSet",
     data:{
