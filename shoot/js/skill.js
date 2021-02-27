@@ -30,6 +30,15 @@ skill.skill.prototype.go = function (count) {
       trytouch.ballArr[i].angleSpeed *= 0.1;
     }
   }
+  if(this.name=="伏波"){
+    for(let index in trytouch.ballArr) {
+      let thisBall=trytouch.ballArr[index];
+      if(thisBall!="self"){
+        trytouch.ballArr.splice(index,1);
+      }
+    }
+  }
+  
 };
 
 skill.skill.prototype.left = function (count) {
