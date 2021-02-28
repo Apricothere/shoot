@@ -14,7 +14,8 @@ skill.skill = function (id,name, part, coolDown, maintain, cost) {
   this.enterTime = 0;
   this.ready = false;
   this.on = false;
-  this.index = 0;
+  if(this.name=="空") this.index=999;
+  else this.index = 0;
 };
 
 skill.skill.prototype.go = function (count) {
@@ -30,13 +31,22 @@ skill.skill.prototype.go = function (count) {
       trytouch.ballArr[i].angleSpeed *= 0.1;
     }
   }
-  if(this.name=="伏波"){
-    for(let index in trytouch.ballArr) {
-      let thisBall=trytouch.ballArr[index];
-      if(thisBall!="self"){
-        trytouch.ballArr.splice(index,1);
-      }
-    }
+  else if(this.name=="伏波"){
+    let newBallArr=[];
+    trytouch.ballArr.forEach(function(value,index,array) {
+      if(value.part=="self") newBallArr.push(value);
+    });
+    trytouch.ballArr=newBallArr;
+  }
+  else if(this.name=="齐射"){
+    trytouch.shootShooot(plane.self.x,plane.self.y);
+  }
+  else if(this.name=="破灭"){
+    trytouch.shootFullScreen(plane.self.x,plane.self.y);
+  }
+  else if(this.name=="圣光"){
+    plane.self.life+=200;
+    vueAttach.life.life=plane.self.life;
   }
   
 };
@@ -89,7 +99,7 @@ skill.keySkill = function (count) {
 };
 
 skill.changeSkillSet = function (index, value) {
-  if(index == 0){
+  if(index == 0 &&value!="空"){
     vueAttach.skill.skill1=value;
   }
   else if(index==1){
@@ -112,15 +122,15 @@ skill.passive.prototype.update=function(){
   console.log("hhh");
 }
 
-skill.empty = new skill.skill(100,"空", "self", 0, 0, 0);
-skill.shizuka = new skill.skill(101,"静谧", "self", 1000, 2000, 0);
+skill.empty = new skill.skill(100,"空", "self", 0, 0, 999);
+skill.shizuka = new skill.skill(101,"静谧", "self", 1000, 1000, 0);
 skill.hot =  new skill.skill(102,"高热","self",1000,1000,0);
-skill.shooot=new skill.skill(103,"齐射","self",1000,1000,0);
-skill.clearWave=new skill.skill(104,"伏波","self",1000,1000,0);
+skill.shooot=new skill.skill(103,"齐射","self",1000,0,0);
+skill.clearWave=new skill.skill(104,"伏波","self",1000,0,0);
 skill.aim=new skill.skill(105,"穿杨","self",1000,1000,0);
 skill.defend=new skill.skill(106,"铁壁","self",1000,1000,0);
-skill.boom=new skill.skill(107,"破灭","self",1000,1000,0);
-skill.heal=new skill.skill(108,"圣光","self",1000,1000,0);
+skill.boom=new skill.skill(107,"破灭","self",1000,0,0);
+skill.heal=new skill.skill(108,"圣光","self",1000,0,0);
 
 skill.passivePrincess=new skill.passive(203,"扇形弹幕","self",0,1000,0,'bullet');
 

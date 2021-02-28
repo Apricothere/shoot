@@ -32,8 +32,8 @@ trytouch.ball = function (
     if (this.xspeed < 0) this.angle += 180;
   }
   this.angleSpeed = angleSpeed;
-  if (part == "self") this.color = "red";
-  else this.color = color; //this.color = '#' + parseInt(Math.random() * 0xffffff).toString(16);
+  //if (part == "self") this.color = "red";
+  this.color = color; //this.color = '#' + parseInt(Math.random() * 0xffffff).toString(16);
   this.stateList = [];
 };
 
@@ -119,7 +119,9 @@ trytouch.ball.prototype.death = function (index, mustdie = false) {
     let self = plane.self;
     let distance = Math.sqrt((this.x - self.x) ** 2 + (this.y - self.y) ** 2);
     if (distance <= this.r + self.r && self.protecting != true) {
-      self.life = control.updateLife(self.life, -this.damage);
+      let bulletDamage = this.damage;
+      if (skill.defend.on) bulletDamage /= 2;
+      self.life = control.updateLife(self.life, -bulletDamage);
       control.replayAudioEffect("biuAudio");
       self.protecting = true;
       trytouch.ballArr.splice(index, 1);
@@ -131,7 +133,39 @@ trytouch.ball.prototype.death = function (index, mustdie = false) {
 trytouch.shootBiuBiu = function (x, y) {
   let xspeedlist = [0];
   let yspeedlist = [-3];
+  let bulletColor = "red";
+  let bulletDamage = 10;
+  if (skill.aim.on) {
+    bulletColor = "pink";
+    bulletDamage = 20;
+  }
   for (let i = 0; i < xspeedlist.length; i++) {
+    let ball = new trytouch.ball(
+      "self",
+      bulletDamage,
+      x,
+      y,
+      5,
+      xspeedlist[i],
+      yspeedlist[i],
+      0,
+      false,
+      bulletColor
+    );
+    trytouch.ballArr.push(ball);
+    ball.show();
+  }
+};
+
+trytouch.shootShooot = function (x, y) {
+  let xspeedlist = [-5,-4.5,-4,-3.5, -3,-2.5, -2,-1.5,-1,-0.5, 0, 0.5,1 , 1.5, 2, 2.5, 3,3.5,4,4.5,5];
+  let yspeedlist = [0,-0.5,-1,-1.5,-2,-2.5,-3,-3.5,-4,-4.5,-5,-4.5,-4,-3.5,-3,-2.5,-2,-1.5,-1,-0.5,0];
+  let aspeedlist = [-0.5,0.45, -0.4,0.35, -0.3,0.25, -0.2,0.15, -0.1,0.05, 0,-0.05,0.1,-0.15,0.2,-0.25,
+     0.3,-0.35, 0.4,-0.45,0.5];
+  for (let i = 0; i < xspeedlist.length; i++) {
+    let color;
+    if (i % 2) color = "red";
+    else color = "pink";
     let ball = new trytouch.ball(
       "self",
       10,
@@ -140,9 +174,28 @@ trytouch.shootBiuBiu = function (x, y) {
       5,
       xspeedlist[i],
       yspeedlist[i],
+      aspeedlist[i]*2.5,
+      false,
+      color
+    );
+    trytouch.ballArr.push(ball);
+    ball.show();
+  }
+};
+
+trytouch.shootFullScreen = function (x, y) {
+  for (i = 0; i < trycvs.canvas.width; i += 5) {
+    let ball = new trytouch.ball(
+      "self",
+      100,
+      i,
+      y,
+      10,
+      0,
+      -5,
       0,
       false,
-      "red"
+      "pink"
     );
     trytouch.ballArr.push(ball);
     ball.show();
