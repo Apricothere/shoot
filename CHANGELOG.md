@@ -1,6 +1,13 @@
 # CHANGELOG
 This repository provides a Flight Shooting Game demo developed with HTML5.
 
+## Version 1.1
+制作了武器系统及武器的战损/恢复
+添加技能和武器介绍文字；
+
+## Version 1.06
+实装了所有技能效果；
+
 ## Version 1.04
 整合所有元素到主页面上，但尚未排版；
 制作技能学习和选择系统；
