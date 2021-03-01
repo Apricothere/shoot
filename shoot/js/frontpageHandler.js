@@ -3,11 +3,15 @@ var frontpage = frontpage || {};
 frontpage.skillPoint = 10000;
 frontpage.learntSkills = [];
 frontpage.learntWeapons = [];
-frontpage.learntPassives = [];
+frontpage.learntPassives = [201];
 
 frontpage.province1=$("#province1");
 frontpage.province2=$("#province2");
 frontpage.province3=$("#province3");
+frontpage.weapon1=$("#weapon1");
+frontpage.weapon2=$("#weapon2");
+frontpage.weapon3=$("#weapon3");
+frontpage.weapon4=$("#weapon4");
 
 frontpage.learnSkill = function (skillId, costPoint) {
   if (
@@ -24,8 +28,27 @@ frontpage.learnSkill = function (skillId, costPoint) {
     frontpage.f(frontpage.province1[0], button.innerText);
     frontpage.f(frontpage.province2[0], button.innerText);
     frontpage.f(frontpage.province3[0], button.innerText);
+  }
+};
 
-
+frontpage.learnPassive = function (skillId, costPoint) {
+  if (
+    !frontpage.learntPassives.includes(skillId) &&
+    frontpage.skillPoint >= costPoint
+  ) {
+    if(!frontpage.learntPassives.includes(skillId-1))
+    {
+      alert("请先解锁之前的武器栏！");
+      return;
+    }
+    frontpage.skillPoint -= costPoint;
+    frontpage.learntPassives.push(skillId);
+    vueAttach.skillPoint.skillPoint = frontpage.skillPoint;
+    let button = document.getElementById("passive" + skillId.toString());
+    button.style.backgroundColor = "orange";
+    let weapon = document.getElementById('weapon'+(skillId-200).toString());
+    console.log(weapon);
+    weapon.removeAttribute("disabled");
   }
 };
 
@@ -73,6 +96,38 @@ frontpage.province3.change(function (){
   else if(thisValue=='圣光') skill.installSkillList(108, 2);
 })
 
+frontpage.weapon1.change(function (){
+  let thisValue = $(this).val();
+  if(thisValue=='biubiubiu') {skill.passiveList[0]=201;vueAttach.passive.passive1='牧歌灵能机关枪';}
+  else if(thisValue=='snowStorm') {skill.passiveList[0]=202;vueAttach.passive.passive1='暴风雪式发射器';}
+  else if(thisValue=='clearer') {skill.passiveList[0]=203;vueAttach.passive.passive1='海星科技清除装置';}
+  else {skill.passiveList[0]=0;vueAttach.passive.passive1='空';}
+})
+
+frontpage.weapon2.change(function (){
+  let thisValue = $(this).val();
+  if(thisValue=='biubiubiu') {skill.passiveList[1]=201;vueAttach.passive.passive2='牧歌灵能机关枪';}
+  else if(thisValue=='snowStorm') {skill.passiveList[1]=202;vueAttach.passive.passive2='暴风雪式发射器';}
+  else if(thisValue=='clearer') {skill.passiveList[1]=203;vueAttach.passive.passive2='海星科技清除装置';}
+  else {skill.passiveList[1]=0;vueAttach.passive.passive2='空';}
+})
+
+frontpage.weapon3.change(function (){
+  let thisValue = $(this).val();
+  console.log(thisValue);
+  if(thisValue=='biubiubiu') {skill.passiveList[2]=201;vueAttach.passive.passive3='牧歌灵能机关枪';}
+  else if(thisValue=='snowStorm') {skill.passiveList[2]=202;vueAttach.passive.passive3='暴风雪式发射器';}
+  else if(thisValue=='clearer') {skill.passiveList[2]=203;vueAttach.passive.passive3='海星科技清除装置';}
+  else {skill.passiveList[2]=0;vueAttach.passive.passive3='空';}
+})
+
+frontpage.weapon4.change(function (){
+  let thisValue = $(this).val();
+  if(thisValue=='biubiubiu') {skill.passiveList[3]=201;vueAttach.passive.passive4='牧歌灵能机关枪';}
+  else if(thisValue=='snowStorm') {skill.passiveList[3]=202;vueAttach.passive.passive4='暴风雪式发射器';}
+  else if(thisValue=='clearer') {skill.passiveList[3]=203;vueAttach.passive.passive4='海星科技清除装置';}
+  else {skill.passiveList[3]=0;vueAttach.passive.passive4='空';}
+})
 
 $(function () {
   $("#skillTree").click(function () {
@@ -169,5 +224,25 @@ $(function () {
 $(function () {
   $("#skill108").click(function () {
     frontpage.learnSkill(108, 100);
+  });
+});
+$(function () {
+  $("#skill108").click(function () {
+    frontpage.learnSkill(108, 100);
+  });
+});
+$(function () {
+  $("#passive202").click(function () {
+    frontpage.learnPassive(202, 100);
+  });
+});
+$(function () {
+  $("#passive203").click(function () {
+    frontpage.learnPassive(203, 100);
+  });
+});
+$(function () {
+  $("#passive204").click(function () {
+    frontpage.learnPassive(204, 100);
   });
 });

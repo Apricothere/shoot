@@ -32,6 +32,15 @@
   right: -34px;
   top: -180px;
 }
+#passiveSet {
+  border: 2px solid red;
+  float: left;
+  clear: both;
+  z-index: 999;
+  position: relative;
+  right: -34px;
+  top: -180px;
+}
 #background{
   position: relative;
   top: 542px;
@@ -40,6 +49,11 @@
   z-index: -1;
 }
 .skillBlock{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 30px;
+}
+.passiveBlock{
   margin-top: 10px;
   margin-bottom: 10px;
   height: 30px;

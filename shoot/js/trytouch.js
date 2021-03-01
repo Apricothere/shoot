@@ -65,10 +65,22 @@ trytouch.ball.prototype.show = function () {
 
 trytouch.ball.prototype.move = function () {
   if (this.capture) {
-    this.angle =
-      (Math.atan((-plane.self.y + this.y) / (plane.self.x - this.x)) * 180) /
-      Math.PI;
-    if (plane.self.x - this.x < 0) this.angle += 180;
+    if (this.part != "self") {
+      this.angle =
+        (Math.atan((-plane.self.y + this.y) / (plane.self.x - this.x)) * 180) /
+        Math.PI;
+      if (plane.self.x - this.x < 0) this.angle += 180;
+    } else {
+      if (plane.enemyArr.length) {
+        this.angle =
+          (Math.atan(
+            (-plane.enemyArr[0].y + this.y) / (plane.enemyArr[0].x - this.x)
+          ) *
+            180) /
+          Math.PI;
+        if (plane.enemyArr[0].x - this.x < 0) this.angle += 180;
+      }
+    }
     this.capture = false;
   }
   this.angle += this.angleSpeed;
@@ -112,6 +124,10 @@ trytouch.ball.prototype.death = function (index, mustdie = false) {
           vueAttach.progress.styleObject.width = control.toPercent(percentage);
         }
         trytouch.ballArr.splice(index, 1);
+        if(this.color=="golden"||this.color=="yellow"){
+          console.log("ha");
+          trytouch.shootHolyCircle(this.x,this.y,enemy.r);
+        }
         return;
       }
     }
@@ -121,6 +137,7 @@ trytouch.ball.prototype.death = function (index, mustdie = false) {
     if (distance <= this.r + self.r && self.protecting != true) {
       let bulletDamage = this.damage;
       if (skill.defend.on) bulletDamage /= 2;
+      skill.lossPassive();
       self.life = control.updateLife(self.life, -bulletDamage);
       control.replayAudioEffect("biuAudio");
       self.protecting = true;
@@ -157,11 +174,492 @@ trytouch.shootBiuBiu = function (x, y) {
   }
 };
 
+trytouch.shootBiuBiu_2 = function (x, y) {
+  let xspeedlist = [0];
+  let yspeedlist = [-3];
+  let bulletColor = "red";
+  let bulletDamage = 10;
+  if (skill.aim.on) {
+    bulletColor = "pink";
+    bulletDamage = 20;
+  }
+  for (let i = 0; i < xspeedlist.length; i++) {
+    let ball_1 = new trytouch.ball(
+      "self",
+      bulletDamage,
+      x - 7.5,
+      y,
+      5,
+      xspeedlist[i],
+      yspeedlist[i],
+      0,
+      false,
+      bulletColor
+    );
+    let ball_2 = new trytouch.ball(
+      "self",
+      bulletDamage,
+      x + 7.5,
+      y,
+      5,
+      xspeedlist[i],
+      yspeedlist[i],
+      0,
+      false,
+      bulletColor
+    );
+    trytouch.ballArr.push(ball_1);
+    trytouch.ballArr.push(ball_2);
+    ball_1.show();
+    ball_2.show();
+  }
+};
+
+trytouch.shootBiuBiu_3 = function (x, y) {
+  let xspeedlist = [0];
+  let yspeedlist = [-3];
+  let bulletColor = "red";
+  let bulletDamage = 10;
+  if (skill.aim.on) {
+    bulletColor = "pink";
+    bulletDamage = 20;
+  }
+  for (let i = 0; i < xspeedlist.length; i++) {
+    let ball_1 = new trytouch.ball(
+      "self",
+      bulletDamage,
+      x - 12.5,
+      y,
+      5,
+      xspeedlist[i],
+      yspeedlist[i],
+      0,
+      false,
+      bulletColor
+    );
+    let ball_2 = new trytouch.ball(
+      "self",
+      bulletDamage,
+      x,
+      y,
+      5,
+      xspeedlist[i],
+      yspeedlist[i],
+      0,
+      false,
+      bulletColor
+    );
+    let ball_3 = new trytouch.ball(
+      "self",
+      bulletDamage,
+      x + 12.5,
+      y,
+      5,
+      xspeedlist[i],
+      yspeedlist[i],
+      0,
+      false,
+      bulletColor
+    );
+    trytouch.ballArr.push(ball_1);
+    trytouch.ballArr.push(ball_2);
+    trytouch.ballArr.push(ball_3);
+    ball_1.show();
+    ball_2.show();
+    ball_3.show();
+  }
+};
+
+trytouch.shootBiuBiu_4 = function (x, y) {
+  let xspeedlist = [0];
+  let yspeedlist = [-3];
+  let bulletColor = "violet";
+  let bulletDamage = 40;
+  if (skill.aim.on) {
+    bulletColor = "purple";
+    bulletDamage = 80;
+  }
+  for (let i = 0; i < xspeedlist.length; i++) {
+    let ball = new trytouch.ball(
+      "self",
+      bulletDamage,
+      x,
+      y,
+      10,
+      xspeedlist[i],
+      yspeedlist[i],
+      0,
+      false,
+      bulletColor
+    );
+    trytouch.ballArr.push(ball);
+    ball.show();
+  }
+};
+
+trytouch.shootSnowStorm = function (x, y) {
+  let xspeedlist = [-2, 2];
+  let yspeedlist = [0, 0];
+  let aspeedlist = [-0.5, 0.5];
+  let bulletColor = "red";
+  let bulletDamage = 10;
+  if (skill.aim.on) {
+    bulletColor = "pink";
+    bulletDamage = 20;
+  }
+  for (let i = 0; i < xspeedlist.length; i++) {
+    let ball = new trytouch.ball(
+      "self",
+      bulletDamage,
+      x,
+      y,
+      5,
+      xspeedlist[i],
+      yspeedlist[i],
+      aspeedlist[i],
+      false,
+      bulletColor
+    );
+    trytouch.ballArr.push(ball);
+    ball.show();
+  }
+};
+
+trytouch.shootSnowStorm_2 = function (x, y) {
+  trytouch.shootSnowStorm(x, y);
+  let xspeedlist = [-1.5, 1.5];
+  let yspeedlist = [-0.5, -0.5];
+  let aspeedlist = [-0.4, 0.4];
+  let bulletColor = "red";
+  let bulletDamage = 10;
+  if (skill.aim.on) {
+    bulletColor = "pink";
+    bulletDamage = 20;
+  }
+  for (let i = 0; i < xspeedlist.length; i++) {
+    let ball = new trytouch.ball(
+      "self",
+      bulletDamage,
+      x,
+      y,
+      5,
+      xspeedlist[i],
+      yspeedlist[i],
+      aspeedlist[i],
+      false,
+      bulletColor
+    );
+    trytouch.ballArr.push(ball);
+    ball.show();
+  }
+};
+
+trytouch.shootSnowStorm_3 = function (x, y) {
+  trytouch.shootSnowStorm_2(x, y);
+  let xspeedlist = [-0.5, 0.5];
+  let yspeedlist = [-2, -2];
+  let aspeedlist = [0.2, -0.2];
+  let bulletColor = "red";
+  let bulletDamage = 10;
+  if (skill.aim.on) {
+    bulletColor = "pink";
+    bulletDamage = 20;
+  }
+  for (let i = 0; i < xspeedlist.length; i++) {
+    let ball = new trytouch.ball(
+      "self",
+      bulletDamage,
+      x,
+      y,
+      5,
+      xspeedlist[i],
+      yspeedlist[i],
+      aspeedlist[i],
+      false,
+      bulletColor
+    );
+    trytouch.ballArr.push(ball);
+    ball.show();
+  }
+};
+
+trytouch.shootSnowStorm_4 = function (x, y) {
+  trytouch.shootSnowStorm_3(x, y);
+  if (control.r(100) < 20) {
+    let xspeedlist = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5];
+    let yspeedlist = [-1, -2, -3, -4, -5, -6, -5, -4, -3, -2, -1];
+    let aspeedlist = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let bulletColor = "violet";
+    let bulletDamage = 20;
+    if (skill.aim.on) {
+      bulletColor = "purple";
+      bulletDamage = 40;
+    }
+    for (let i = 0; i < xspeedlist.length; i++) {
+      let ball = new trytouch.ball(
+        "self",
+        bulletDamage,
+        x,
+        y,
+        5,
+        xspeedlist[i],
+        yspeedlist[i],
+        aspeedlist[i],
+        false,
+        bulletColor
+      );
+      trytouch.ballArr.push(ball);
+      ball.show();
+    }
+  }
+};
+
+trytouch.shootBloody = function (x, y) {
+  if (control.r(100) < 25) {
+    let bulletColor = "violet";
+    let bulletDamage = 2.5;
+    if (skill.aim.on) {
+      bulletColor = "purple";
+      bulletDamage = 5;
+    }
+    for (i = x - 25; i < x + 25; i += 5) {
+      let ball = new trytouch.ball(
+        "self",
+        bulletDamage,
+        i,
+        y,
+        10,
+        0,
+        -5,
+        0,
+        false,
+        bulletColor
+      );
+      trytouch.ballArr.push(ball);
+      ball.show();
+    }
+  }
+};
+
+trytouch.shootBloody_2 = function (x, y) {
+  trytouch.shootBloody(x, y);
+  if (control.r(100) < 50) {
+    let xspeedlist = [0];
+    let yspeedlist = [-3];
+    let bulletColor = "red";
+    let bulletDamage = 10;
+    if (skill.aim.on) {
+      bulletColor = "pink";
+      bulletDamage = 20;
+    }
+    for (let i = 0; i < xspeedlist.length; i++) {
+      let ball = new trytouch.ball(
+        "self",
+        bulletDamage,
+        x,
+        y,
+        7.5,
+        xspeedlist[i],
+        yspeedlist[i],
+        0,
+        true,
+        bulletColor
+      );
+      trytouch.ballArr.push(ball);
+      ball.show();
+    }
+  }
+};
+
+trytouch.shootBloody_3 = function(x,y){
+  trytouch.shootBloody_2(x,y);
+  if (control.r(100) > 75) {
+    let bulletColor = "violet";
+    let bulletDamage = 2.5;
+    if (skill.aim.on) {
+      bulletColor = "purple";
+      bulletDamage = 5;
+    }
+    for (i = x - 40; i < x + 40; i += 5) {
+      let ball = new trytouch.ball(
+        "self",
+        bulletDamage,
+        i,
+        y,
+        10,
+        0,
+        -5,
+        0,
+        false,
+        bulletColor
+      );
+      trytouch.ballArr.push(ball);
+      ball.show();
+    }
+  }
+}
+
+trytouch.shootBloody_4 = function(x,y){
+  trytouch.shootBloody_3(x,y);
+  if (control.r(100) > 75) {
+    let bulletColor = "golden";
+    let bulletDamage = 2.5;
+    if (skill.aim.on) {
+      bulletColor = "yellow";
+      bulletDamage = 5;
+    }
+    for (let i = 0; i < 1; i ++) {
+      let ball = new trytouch.ball(
+        "self",
+        bulletDamage,
+        x,
+        y,
+        10,
+        0,
+        -5,
+        0,
+        true,
+        bulletColor
+      );
+      trytouch.ballArr.push(ball);
+      ball.show();
+    }
+  }
+}
+
+trytouch.shootHolyCircle = function (x, y ,r) {
+  let xspeedlist = [
+    -2,
+    -1.732,
+    -1.414,
+    -1,
+    0,
+    1,
+    1.414,
+    1.732,
+    2,
+    1.732,
+    1.414,
+    1,
+    0,
+    -1,
+    -1.414,
+    -1.732,
+    -2,
+  ];
+  let yspeedlist = [
+    0,
+    -1,
+    -1.414,
+    -1.732,
+    -2,
+    -1.732,
+    -1.414,
+    -1,
+    0,
+    1,
+    1.414,
+    1.732,
+    2,
+    1.732,
+    1.414,
+    1,
+    0,
+  ];
+  let xleft=x-1.5*r,xright=x+1.5*r,yup=y-1.5*r,ydown=y+1.5*r;
+  let xlist=[xleft,xleft,xleft,xleft,xleft,xright,xright,xright,xright,xright,xright,xright,xleft,xleft,xleft,xleft,xleft];
+  let ylist=[yup,yup,yup,yup,yup,yup,yup,yup,ydown,ydown,ydown,ydown,ydown,ydown,ydown,ydown,ydown];
+  for (let i = 0; i < xspeedlist.length; i++) {
+    let color;
+    if (i % 2) color = "red";
+    else color = "purple";
+    let ball = new trytouch.ball(
+      "self",
+      10,
+      xlist[i],
+      ylist[i],
+      5,
+      xspeedlist[i],
+      yspeedlist[i],
+      0,
+      false,
+      color
+    );
+    trytouch.ballArr.push(ball);
+    ball.show();
+  }
+};
+
 trytouch.shootShooot = function (x, y) {
-  let xspeedlist = [-5,-4.5,-4,-3.5, -3,-2.5, -2,-1.5,-1,-0.5, 0, 0.5,1 , 1.5, 2, 2.5, 3,3.5,4,4.5,5];
-  let yspeedlist = [0,-0.5,-1,-1.5,-2,-2.5,-3,-3.5,-4,-4.5,-5,-4.5,-4,-3.5,-3,-2.5,-2,-1.5,-1,-0.5,0];
-  let aspeedlist = [-0.5,0.45, -0.4,0.35, -0.3,0.25, -0.2,0.15, -0.1,0.05, 0,-0.05,0.1,-0.15,0.2,-0.25,
-     0.3,-0.35, 0.4,-0.45,0.5];
+  let xspeedlist = [
+    -5,
+    -4.5,
+    -4,
+    -3.5,
+    -3,
+    -2.5,
+    -2,
+    -1.5,
+    -1,
+    -0.5,
+    0,
+    0.5,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    4.5,
+    5,
+  ];
+  let yspeedlist = [
+    0,
+    -0.5,
+    -1,
+    -1.5,
+    -2,
+    -2.5,
+    -3,
+    -3.5,
+    -4,
+    -4.5,
+    -5,
+    -4.5,
+    -4,
+    -3.5,
+    -3,
+    -2.5,
+    -2,
+    -1.5,
+    -1,
+    -0.5,
+    0,
+  ];
+  let aspeedlist = [
+    -0.5,
+    0.45,
+    -0.4,
+    0.35,
+    -0.3,
+    0.25,
+    -0.2,
+    0.15,
+    -0.1,
+    0.05,
+    0,
+    -0.05,
+    0.1,
+    -0.15,
+    0.2,
+    -0.25,
+    0.3,
+    -0.35,
+    0.4,
+    -0.45,
+    0.5,
+  ];
   for (let i = 0; i < xspeedlist.length; i++) {
     let color;
     if (i % 2) color = "red";
@@ -174,7 +672,7 @@ trytouch.shootShooot = function (x, y) {
       5,
       xspeedlist[i],
       yspeedlist[i],
-      aspeedlist[i]*2.5,
+      aspeedlist[i] * 2.5,
       false,
       color
     );

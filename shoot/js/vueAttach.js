@@ -62,3 +62,20 @@ vueAttach.skill=new Vue({
     methods:{
     }
 });
+
+vueAttach.passive=new Vue({
+    el:"#passiveSet",
+    data:{
+        passive1:'牧歌灵能机关枪',
+        passive2:'空',
+        passive3:'空',
+        passive4:'空',
+        styleObject: {
+            'font-size':'20px',
+            'width': '30px',
+            'text-align':'center'
+          }
+    },
+    methods:{
+    }
+});

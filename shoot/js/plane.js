@@ -127,7 +127,20 @@ plane.enemyPlane.prototype.shoot = function (count) {
     let interval = 15;
     if(skill.hot.on) interval=10;
     if (count % interval == 0) {
-      trytouch.shootBiuBiu(this.x, this.y - this.r);
+      let timesMap=skill.calculatePassiveTimes(skill.passiveList);
+      //trytouch.shootSnowStorm_4(this.x, this.y - this.r);
+      if(timesMap[0]==1) trytouch.shootBiuBiu(this.x, this.y - this.r);
+      else if(timesMap[0]==2) trytouch.shootBiuBiu_2(this.x, this.y - this.r);
+      else if(timesMap[0]==3) trytouch.shootBiuBiu_3(this.x, this.y - this.r);
+      else if(timesMap[0]==4) trytouch.shootBiuBiu_4(this.x, this.y - this.r);
+      if(timesMap[1]==1) trytouch.shootSnowStorm(this.x, this.y - this.r);
+      else if(timesMap[1]==2) trytouch.shootSnowStorm_2(this.x, this.y - this.r);
+      else if(timesMap[1]==3) trytouch.shootSnowStorm_3(this.x, this.y - this.r);
+      else if(timesMap[1]==4) trytouch.shootSnowStorm_4(this.x, this.y - this.r);
+      if(timesMap[2]==1) trytouch.shootBloody(this.x, this.y - this.r);
+      else if(timesMap[2]==2) trytouch.shootBloody_2(this.x, this.y - this.r);
+      else if(timesMap[2]==3) trytouch.shootBloody_3(this.x, this.y - this.r);
+      else if(timesMap[2]==4) trytouch.shootBloody_4(this.x, this.y - this.r);
     }
   } else if (this.type == "001") {
     if (count % 150 == 0) {
@@ -198,8 +211,9 @@ plane.selfMove = function (self) {
       currentSkill = skill.skillList[1];
     } else if (e.key == "c" && skill.skillList.length >= 3) {
       currentSkill = skill.skillList[2];
-    } else return;
+    } else return false;
     if (currentSkill.ready) currentSkill.go();
+    return false;
   };
   document.onkeyup = function (e) {
     if (e.key == "ArrowLeft") {
@@ -220,6 +234,7 @@ plane.selfMove = function (self) {
   };
   self.x += self.xspeed;
   self.y += self.yspeed;
+  return false;
 };
 
 plane.selfBirth = function (count) {

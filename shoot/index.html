@@ -34,6 +34,30 @@
             你的得分：<span>{{score}}</span>
         </span>
     </div>
+
+    <div id="passiveSet">
+        <div class="passiveBlock" id="passiveBlock1">
+            <span class="label label-info" id="passive1" v-bind:style="styleObject">
+                <span>{{passive1}}</span>
+            </span>
+        </div>
+        <div class="passiveBlock" id="passiveBlock2">
+            <span class="label label-info" id="passive2" v-bind:style="styleObject">
+                <span>{{passive2}}</span>
+            </span>
+        </div>
+        <div class="passiveBlock" id="passiveBlock3">
+            <span class="label label-info" id="passive3" v-bind:style="styleObject">
+                <span>{{passive3}}</span>
+            </span>
+        </div>
+        <div class="passiveBlock" id="passiveBlock3">
+            <span class="label label-info" id="passive4" v-bind:style="styleObject">
+                <span>{{passive4}}</span>
+            </span>
+        </div>
+    </div>
+
     <div id="skillSet">
         <div class="skillBlock" id="skillBlock1">
             <span class="label label-info" id="skill1" v-bind:style="styleObject">
@@ -171,7 +195,13 @@
                                     <input type="radio" name="options" /> 破灭 </label><br />
                                 <label class="btn btn-primary btn-mainStage" id="skill108">
                                     <input type="radio" name="options" /> 圣光 </label><br />
-
+                                    <br>
+                                <label class="btn btn-primary btn-mainStage" id="passive202">
+                                    <input type="radio" name="options" /> 武器栏2 </label><br />
+                                <label class="btn btn-primary btn-mainStage" id="passive203">
+                                    <input type="radio" name="options" /> 武器栏3 </label><br />
+                                <label class="btn btn-primary btn-mainStage" id="passive204">
+                                    <input type="radio" name="options" /> 武器栏4 </label><br />
                             </div>
                         </div>
 
@@ -209,6 +239,30 @@
                             </select>
                             <select name="province" class="province" id="province3">
                                 <option>--请选择技能--</option>
+                            </select>
+                            <br>
+                            <select name="province" class="province" id="weapon1">
+                                <option value="biubiubiu">牧歌灵能机关枪</option>
+                                <option value="snowStorm">暴风雪式发射器</option>
+                                <option value="clearer">海星科技清除装置</option>
+                            </select>
+                            <select name="province" class="province" id="weapon2" disabled="disabled">
+                                <option>--请选择武器--</option>
+                                <option value="biubiubiu">牧歌灵能机关枪</option>
+                                <option value="snowStorm">暴风雪式发射器</option>
+                                <option value="clearer">海星科技清除装置</option>
+                            </select>
+                            <select name="province" class="province" id="weapon3" disabled="disabled">
+                                <option>--请选择武器--</option>
+                                <option value="biubiubiu">牧歌灵能机关枪</option>
+                                <option value="snowStorm">暴风雪式发射器</option>
+                                <option value="clearer">海星科技清除装置</option>
+                            </select>
+                            <select name="province" class="province" id="weapon4" disabled="disabled">
+                                <option>--请选择武器--</option>
+                                <option value="biubiubiu">牧歌灵能机关枪</option>
+                                <option value="snowStorm">暴风雪式发射器</option>
+                                <option value="clearer">海星科技清除装置</option>
                             </select>
                         </div>
 

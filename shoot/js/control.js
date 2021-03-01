@@ -220,6 +220,7 @@ control.gameStart = function (level) {
       let tmpSkill = skill.skillList[i];
       tmpSkill.update();
     }
+    skill.passiveUpdate();
     //skill.keySkill();
     //enemy
     for (let i = 0; i < plane.enemyArr.length; i++) {
