@@ -125,22 +125,33 @@ plane.enemyPlane.prototype.death = function (index) {
 plane.enemyPlane.prototype.shoot = function (count) {
   if (this.type == "self") {
     let interval = 15;
-    if(skill.hot.on) interval=10;
+    if (skill.hot.on) interval = 10;
     if (count % interval == 0) {
-      let timesMap=skill.calculatePassiveTimes(skill.passiveList);
+      let timesMap = skill.calculatePassiveTimes(skill.passiveList);
       //trytouch.shootSnowStorm_4(this.x, this.y - this.r);
-      if(timesMap[0]==1) trytouch.shootBiuBiu(this.x, this.y - this.r);
-      else if(timesMap[0]==2) trytouch.shootBiuBiu_2(this.x, this.y - this.r);
-      else if(timesMap[0]==3) trytouch.shootBiuBiu_3(this.x, this.y - this.r);
-      else if(timesMap[0]==4) trytouch.shootBiuBiu_4(this.x, this.y - this.r);
-      if(timesMap[1]==1) trytouch.shootSnowStorm(this.x, this.y - this.r);
-      else if(timesMap[1]==2) trytouch.shootSnowStorm_2(this.x, this.y - this.r);
-      else if(timesMap[1]==3) trytouch.shootSnowStorm_3(this.x, this.y - this.r);
-      else if(timesMap[1]==4) trytouch.shootSnowStorm_4(this.x, this.y - this.r);
-      if(timesMap[2]==1) trytouch.shootBloody(this.x, this.y - this.r);
-      else if(timesMap[2]==2) trytouch.shootBloody_2(this.x, this.y - this.r);
-      else if(timesMap[2]==3) trytouch.shootBloody_3(this.x, this.y - this.r);
-      else if(timesMap[2]==4) trytouch.shootBloody_4(this.x, this.y - this.r);
+      if (timesMap[0] == 1) trytouch.shootBiuBiu(this.x, this.y - this.r);
+      else if (timesMap[0] == 2)
+        trytouch.shootBiuBiu_2(this.x, this.y - this.r);
+      else if (timesMap[0] == 3)
+        trytouch.shootBiuBiu_3(this.x, this.y - this.r);
+      else if (timesMap[0] == 4)
+        trytouch.shootBiuBiu_4(this.x, this.y - this.r);
+      if (count % (2 * interval) == 0) {
+        if (timesMap[1] == 1) trytouch.shootSnowStorm(this.x, this.y - this.r);
+        else if (timesMap[1] == 2)
+          trytouch.shootSnowStorm_2(this.x, this.y - this.r);
+        else if (timesMap[1] == 3)
+          trytouch.shootSnowStorm_3(this.x, this.y - this.r);
+        else if (timesMap[1] == 4)
+          trytouch.shootSnowStorm_4(this.x, this.y - this.r);
+      }
+      if (timesMap[2] == 1) trytouch.shootBloody(this.x, this.y - this.r);
+      else if (timesMap[2] == 2)
+        trytouch.shootBloody_2(this.x, this.y - this.r);
+      else if (timesMap[2] == 3)
+        trytouch.shootBloody_3(this.x, this.y - this.r);
+      else if (timesMap[2] == 4)
+        trytouch.shootBloody_4(this.x, this.y - this.r);
     }
   } else if (this.type == "001") {
     if (count % 150 == 0) {
@@ -332,8 +343,7 @@ plane.enemyBirth = function (level, count, stage) {
         enemy.show();
       } else return;
     } else return;
-  }
-  else if(level==2){
+  } else if (level == 2) {
     if (stage.clear && !stage.isLastTime) return;
     if (stage.index == 0) {
       //公主

@@ -385,7 +385,7 @@ trytouch.shootSnowStorm_3 = function (x, y) {
 
 trytouch.shootSnowStorm_4 = function (x, y) {
   trytouch.shootSnowStorm_3(x, y);
-  if (control.r(100) < 20) {
+  if (control.r(100) < 33) {
     let xspeedlist = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5];
     let yspeedlist = [-1, -2, -3, -4, -5, -6, -5, -4, -3, -2, -1];
     let aspeedlist = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];

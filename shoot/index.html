@@ -172,35 +172,57 @@
                         <button type="button" class="close" data-dismiss="modal">
                             <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                         </button>
-                        <h4 class="modal-title">技能学习</h4>
+                        <h3 class="modal-title">技能学习</h3>
                         <h5 id="skillPoint" v-bind:style="styleObject">剩余点数：{{skillPoint}}</h5>
                     </div>
                     <div class="modal-body">
 
                         <div class="chooseList">
                             <div class="btn-group" data-toggle="buttons">
-                                <label class="btn btn-primary btn-mainStage" id="skill101">
+                                <label class="btn btn-primary btn-mainStage" id="skill101" title="静谧"
+                                    data-container="body" data-toggle="popover" data-trigger="hover"
+                                    data-content="让场上和一段时间内的所有子弹减速。">
                                     <input type="radio" name="options" /> 静谧 </label><br />
-                                <label class="btn btn-primary btn-mainStage" id="skill102">
+                                <label class="btn btn-primary btn-mainStage" id="skill102" title="高热"
+                                    data-container="body" data-toggle="popover" data-trigger="hover"
+                                    data-content="体内的热量已经抑制不住了！在一段时间内增加攻速以倾泻它们。">
                                     <input type="radio" name="options" /> 高热 </label><br />
-                                <label class="btn btn-primary btn-mainStage" id="skill103">
+                                <label class="btn btn-primary btn-mainStage" id="skill103" title="齐射"
+                                    data-container="body" data-toggle="popover" data-trigger="hover"
+                                    data-content="驱动额外的武器组发射一次强力的弹幕。">
                                     <input type="radio" name="options" /> 齐射 </label><br />
-                                <label class="btn btn-primary btn-mainStage" id="skill104">
+                                <label class="btn btn-primary btn-mainStage" id="skill104" title="伏波"
+                                    data-container="body" data-toggle="popover" data-trigger="hover"
+                                    data-content="清除场上所有的敌方子弹，牧歌的这一黑科技往往令对手感到十分不可思议。">
                                     <input type="radio" name="options" /> 伏波 </label><br />
-                                <label class="btn btn-primary btn-mainStage" id="skill105">
+                                <label class="btn btn-primary btn-mainStage" id="skill105" title="穿杨"
+                                    data-container="body" data-toggle="popover" data-trigger="hover"
+                                    data-content="在一段时间内大幅提升视力以更容易命中地方要害，自身子弹威力提升并变化外观。">
                                     <input type="radio" name="options" /> 穿杨 </label><br />
-                                <label class="btn btn-primary btn-mainStage" id="skill106">
+                                <label class="btn btn-primary btn-mainStage" id="skill106" title="铁壁"
+                                    data-container="body" data-toggle="popover" data-trigger="hover"
+                                    data-content="在一段时间内增强自身防御，降低所受伤害。">
                                     <input type="radio" name="options" /> 铁壁 </label><br />
-                                <label class="btn btn-primary btn-mainStage" id="skill107">
+                                <label class="btn btn-primary btn-mainStage" id="skill107" title="破灭"
+                                    data-container="body" data-toggle="popover" data-trigger="hover"
+                                    data-content="对面前的所有区域造成一次高额伤害，这证明了科技水平够高就能做到意识左右物质。">
                                     <input type="radio" name="options" /> 破灭 </label><br />
-                                <label class="btn btn-primary btn-mainStage" id="skill108">
+                                <label class="btn btn-primary btn-mainStage" id="skill108" title="圣光"
+                                    data-container="body" data-toggle="popover" data-trigger="hover"
+                                    data-content="恢复自身一定体力，牧歌将这种效果称为神明的圣光眷顾，是真是假就无人知晓了。">
                                     <input type="radio" name="options" /> 圣光 </label><br />
-                                    <br>
-                                <label class="btn btn-primary btn-mainStage" id="passive202">
+                                <br>
+                                <label class="btn btn-primary btn-mainStage" id="passive202" title="武器栏"
+                                    data-container="body" data-toggle="popover" data-trigger="hover"
+                                    data-content="增加额外的武器栏用于装配更多的武器。">
                                     <input type="radio" name="options" /> 武器栏2 </label><br />
-                                <label class="btn btn-primary btn-mainStage" id="passive203">
+                                <label class="btn btn-primary btn-mainStage" id="passive203" title="武器栏"
+                                    data-container="body" data-toggle="popover" data-trigger="hover"
+                                    data-content="增加额外的武器栏用于装配更多的武器。">
                                     <input type="radio" name="options" /> 武器栏3 </label><br />
-                                <label class="btn btn-primary btn-mainStage" id="passive204">
+                                <label class="btn btn-primary btn-mainStage" id="passive204" title="武器栏"
+                                    data-container="body" data-toggle="popover" data-trigger="hover"
+                                    data-content="增加额外的武器栏用于装配更多的武器。">
                                     <input type="radio" name="options" /> 武器栏4 </label><br />
                             </div>
                         </div>
@@ -225,12 +247,12 @@
                         <button type="button" class="close" data-dismiss="modal">
                             <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                         </button>
-                        <h4 class="modal-title">技能分配</h4>
-                        <h5 id="skillPoint" v-bind:style="styleObject">剩余点数：{{skillPoint}}</h5>
+                        <h3 class="modal-title">技能分配</h3>
                     </div>
                     <div class="modal-body">
 
                         <div class="alloList">
+                            <h4>你可以在这里装配你的技能</h4>
                             <select name="province" class="province" id="province1">
                                 <option>--请选择技能--</option>
                             </select>
@@ -241,25 +263,52 @@
                                 <option>--请选择技能--</option>
                             </select>
                             <br>
+                            <hr>
+                            <h4>你可以在这里装配你的武器，以下三种武器可以自由选择，重复选取则对应武器会得到强化</h4>
+                            <button type="button" class="btn btn-default" title="牧歌灵能机关枪" data-container="body"
+                                data-toggle="popover" data-trigger="hover" data-content="这是牧歌灵能者使用的标准装备，
+                                尽管可能是因为太普通了，绝大多数灵能者对它的评价都比较一般，
+                                但子弹总是用之不竭这一点仍然让它成为了最为通用的武器。
+                                由于强大的后坐力，长时间使用使用者的机体会感到相当的疲劳，
+                                而最近越来越多的阴谋论家也在将无限子弹与灵能者的机体损耗联系在一起。">
+                                牧歌灵能机关枪
+                            </button>
+                            <button type="button" class="btn btn-default" title="暴风雪式发射器" data-container="body"
+                                data-toggle="popover" data-trigger="hover" data-content="第一代这种发射器是牧歌进行武器改造时的失败品。原本是为了改善机枪的弹道，
+                            却反而导致了射速的降低。总工程师为了证明这个项目的可行性，进而研发了第二三四代发射器。
+                            特点是弹道总是画出诡异的弧线，就连设计者也觉得杂乱无章。
+                            因此这种发射器后来被以“暴风雪”命名">
+                                暴风雪式发射器
+                            </button>
+                            <button type="button" class="btn btn-default" title="海星科技清除装置" data-container="body"
+                                data-toggle="popover" data-trigger="hover" data-content="海星科技的得意之作，长处在于呈直线型的范围打击和带瞄准功能的炮弹。
+                            这样的设计可以让士兵尽可能避免在敌人的炮火中冲锋，在阵地战中也能取得很大的优势，
+                            由于威力惊人而被命名为“清除装置”，
+                            而代价是发射频率不太稳定，常常因为装置过热导致无法射击">
+                                海星科技清除装置
+                            </button>
+                            <br>
+                            <br>
+                            <br>
                             <select name="province" class="province" id="weapon1">
                                 <option value="biubiubiu">牧歌灵能机关枪</option>
                                 <option value="snowStorm">暴风雪式发射器</option>
                                 <option value="clearer">海星科技清除装置</option>
                             </select>
                             <select name="province" class="province" id="weapon2" disabled="disabled">
-                                <option>--请选择武器--</option>
+                                <option disabled selected hidden>--请选择武器--</option>
                                 <option value="biubiubiu">牧歌灵能机关枪</option>
                                 <option value="snowStorm">暴风雪式发射器</option>
                                 <option value="clearer">海星科技清除装置</option>
                             </select>
                             <select name="province" class="province" id="weapon3" disabled="disabled">
-                                <option>--请选择武器--</option>
+                                <option disabled selected hidden>--请选择武器--</option>
                                 <option value="biubiubiu">牧歌灵能机关枪</option>
                                 <option value="snowStorm">暴风雪式发射器</option>
                                 <option value="clearer">海星科技清除装置</option>
                             </select>
                             <select name="province" class="province" id="weapon4" disabled="disabled">
-                                <option>--请选择武器--</option>
+                                <option disabled selected hidden>--请选择武器--</option>
                                 <option value="biubiubiu">牧歌灵能机关枪</option>
                                 <option value="snowStorm">暴风雪式发射器</option>
                                 <option value="clearer">海星科技清除装置</option>
@@ -304,6 +353,10 @@
 <script src="js/skill.js"></script>
 <script src="js/control.js"></script>
 <script src="js/frontpageHandler.js"></script>
+<script>
+    $(function () { $("[data-toggle='popover']").popover(); });
+</script>
+
 
 
 </html>

@@ -246,3 +246,4 @@ $(function () {
     frontpage.learnPassive(204, 100);
   });
 });
+
