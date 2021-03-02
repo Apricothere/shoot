@@ -1,6 +1,20 @@
+#gameArea{
+  display: block;
+  margin: 0 auto;
+  height: 677px;
+  width: 958px;
+}
+#gameAreaImg{
+  z-index: -2;
+}
+.gaming{
+  visibility: hidden;
+}
 #playcanvas {
   border: 2px solid red;
-  display: block;
+  position: absolute;
+  top: 31px;
+  left: 394px;
   margin: 0 auto;
   background-color: rgba(255, 255,255, 0);
   z-index: 886;
@@ -10,56 +24,81 @@
   float: left;
   clear: both;
   z-index: 999;
-  position: relative;
-  right: -34px;
-  top: 10px;
+  position: absolute;
+  right: 894px;
+  top: 560px;
 }
 #scoreBlock {
   border: 2px solid red;
   float: right;
   clear: right;
   z-index: 999;
-  position: relative;
-  right: 90px;
-  top: 10px;
+  position: absolute;
+  right: 917px;
+  top: 600px;
 }
 #skillSet {
   border: 2px solid red;
   float: left;
   clear: both;
   z-index: 999;
-  position: relative;
-  right: -34px;
-  top: -180px;
+  position: absolute;
+  right: 1021.5px;
+  top: 420px;
 }
 #passiveSet {
   border: 2px solid red;
   float: left;
   clear: both;
-  z-index: 999;
-  position: relative;
-  right: -34px;
-  top: -180px;
+  z-index: 995;
+  position: absolute;
+  left: 193px;
+  top: 229px;
 }
 #background{
-  position: relative;
-  top: 542px;
+  position: absolute;
+  top: 34px;
+  left: 396px;
   display: block;
   margin: 0 auto;
-  z-index: -1;
+  z-index: 0;
 }
 .skillBlock{
   margin-top: 10px;
   margin-bottom: 10px;
   height: 30px;
 }
+.chooseList{
+  position: absolute;
+  top: 440px;
+  left: 193px;
+}
+#about{
+  width: 82px;
+}
 .passiveBlock{
   margin-top: 10px;
   margin-bottom: 10px;
   height: 30px;
 }
+.progress{
+  position: absolute;
+  top: 33px;
+  left: 396px;
+  width: 500px;
+}
 .progress-bar{
   width: 100%;
+}
+#myCarousel{
+  position: absolute;
+  top: 540px;
+  left: 504px;
+  height: 130px;
+  width: 300px;
+}
+.levelImg{
+  opacity: 65%;
 }
 .clear {
   clear: both;

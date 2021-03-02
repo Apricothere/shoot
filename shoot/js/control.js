@@ -168,8 +168,15 @@ control.initStage = function (level) {
 };
 
 control.gameStart = function (level) {
-  let gameMenu=document.getElementById("gameMenu");
-  gameMenu.style.display="none";
+  let gameMenu=document.getElementsByClassName("gameMenu");
+  for (let i=0;i<gameMenu.length;i++){
+    gameMenu[i].style.visibility="hidden";
+  }
+  let gaming=document.getElementsByClassName("gaming");
+  for (let i=0;i<gaming.length;i++){
+    gaming[i].style.visibility="visible";
+  }
+
   var count = 0;
   var protectStartCount = 0;
   control.score = 0;

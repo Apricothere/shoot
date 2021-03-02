@@ -247,3 +247,17 @@ $(function () {
   });
 });
 
+$(function () { $("[data-toggle='popover']").popover(); });
+
+$(function () {
+  $("#level1Img").click(function () {
+    $("#level1Title")[0].innerText="loading...";
+    $(this)
+      .delay(3000)
+      .queue(function () {
+        $("#level1Title")[0].innerText="1-迷雾";
+        $(this).button("reset");
+        control.gameStart(1);
+      });
+  });
+});
