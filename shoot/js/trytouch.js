@@ -119,14 +119,20 @@ trytouch.ball.prototype.death = function (index, mustdie = false) {
       );
       if (distance <= this.r + enemy.r) {
         enemy.life -= this.damage;
-        if (enemy.type == "006") {
+        if (
+          enemy.type == "006" ||
+          enemy.type == "011" ||
+          enemy.type == "015" ||
+          enemy.type == "019" ||
+          enemy.type == "024"
+        ) {
           let percentage = enemy.life / enemy.maxlife;
           vueAttach.progress.styleObject.width = control.toPercent(percentage);
         }
         trytouch.ballArr.splice(index, 1);
-        if(this.color=="golden"||this.color=="yellow"){
+        if (this.color == "golden" || this.color == "yellow") {
           console.log("ha");
-          trytouch.shootHolyCircle(this.x,this.y,enemy.r);
+          trytouch.shootHolyCircle(this.x, this.y, enemy.r);
         }
         return;
       }
@@ -137,6 +143,7 @@ trytouch.ball.prototype.death = function (index, mustdie = false) {
     if (distance <= this.r + self.r && self.protecting != true) {
       let bulletDamage = this.damage;
       if (skill.defend.on) bulletDamage /= 2;
+      if (control.level == 3) bulletDamage *= 1.5;
       skill.lossPassive();
       self.life = control.updateLife(self.life, -bulletDamage);
       control.replayAudioEffect("biuAudio");
@@ -471,8 +478,8 @@ trytouch.shootBloody_2 = function (x, y) {
   }
 };
 
-trytouch.shootBloody_3 = function(x,y){
-  trytouch.shootBloody_2(x,y);
+trytouch.shootBloody_3 = function (x, y) {
+  trytouch.shootBloody_2(x, y);
   if (control.r(100) > 75) {
     let bulletColor = "violet";
     let bulletDamage = 2.5;
@@ -497,10 +504,10 @@ trytouch.shootBloody_3 = function(x,y){
       ball.show();
     }
   }
-}
+};
 
-trytouch.shootBloody_4 = function(x,y){
-  trytouch.shootBloody_3(x,y);
+trytouch.shootBloody_4 = function (x, y) {
+  trytouch.shootBloody_3(x, y);
   if (control.r(100) > 75) {
     let bulletColor = "golden";
     let bulletDamage = 2.5;
@@ -508,7 +515,7 @@ trytouch.shootBloody_4 = function(x,y){
       bulletColor = "yellow";
       bulletDamage = 5;
     }
-    for (let i = 0; i < 1; i ++) {
+    for (let i = 0; i < 1; i++) {
       let ball = new trytouch.ball(
         "self",
         bulletDamage,
@@ -525,9 +532,9 @@ trytouch.shootBloody_4 = function(x,y){
       ball.show();
     }
   }
-}
+};
 
-trytouch.shootHolyCircle = function (x, y ,r) {
+trytouch.shootHolyCircle = function (x, y, r) {
   let xspeedlist = [
     -2,
     -1.732,
@@ -566,9 +573,48 @@ trytouch.shootHolyCircle = function (x, y ,r) {
     1,
     0,
   ];
-  let xleft=x-1.5*r,xright=x+1.5*r,yup=y-1.5*r,ydown=y+1.5*r;
-  let xlist=[xleft,xleft,xleft,xleft,xleft,xright,xright,xright,xright,xright,xright,xright,xleft,xleft,xleft,xleft,xleft];
-  let ylist=[yup,yup,yup,yup,yup,yup,yup,yup,ydown,ydown,ydown,ydown,ydown,ydown,ydown,ydown,ydown];
+  let xleft = x - 1.5 * r,
+    xright = x + 1.5 * r,
+    yup = y - 1.5 * r,
+    ydown = y + 1.5 * r;
+  let xlist = [
+    xleft,
+    xleft,
+    xleft,
+    xleft,
+    xleft,
+    xright,
+    xright,
+    xright,
+    xright,
+    xright,
+    xright,
+    xright,
+    xleft,
+    xleft,
+    xleft,
+    xleft,
+    xleft,
+  ];
+  let ylist = [
+    yup,
+    yup,
+    yup,
+    yup,
+    yup,
+    yup,
+    yup,
+    yup,
+    ydown,
+    ydown,
+    ydown,
+    ydown,
+    ydown,
+    ydown,
+    ydown,
+    ydown,
+    ydown,
+  ];
   for (let i = 0; i < xspeedlist.length; i++) {
     let color;
     if (i % 2) color = "red";
@@ -702,7 +748,7 @@ trytouch.shootFullScreen = function (x, y) {
 
 trytouch.shootBiuBiu_enemy = function (x, y) {
   let xspeedlist = [0];
-  let yspeedlist = [-3];
+  let yspeedlist = [3];
   for (let i = 0; i < xspeedlist.length; i++) {
     let ball = new trytouch.ball(
       "enemy",
@@ -718,6 +764,43 @@ trytouch.shootBiuBiu_enemy = function (x, y) {
     );
     trytouch.ballArr.push(ball);
     ball.show();
+  }
+};
+
+trytouch.shootBiuBiu_2_enemy = function (x, y) {
+  let xspeedlist = [0];
+  let yspeedlist = [3];
+  let bulletColor = "cyan";
+  let bulletDamage = 10;
+  for (let i = 0; i < xspeedlist.length; i++) {
+    let ball_1 = new trytouch.ball(
+      "enemy",
+      bulletDamage,
+      x - 7.5,
+      y,
+      5,
+      xspeedlist[i],
+      yspeedlist[i],
+      0,
+      false,
+      bulletColor
+    );
+    let ball_2 = new trytouch.ball(
+      "enemy",
+      bulletDamage,
+      x + 7.5,
+      y,
+      5,
+      xspeedlist[i],
+      yspeedlist[i],
+      0,
+      false,
+      bulletColor
+    );
+    trytouch.ballArr.push(ball_1);
+    trytouch.ballArr.push(ball_2);
+    ball_1.show();
+    ball_2.show();
   }
 };
 
@@ -872,6 +955,144 @@ trytouch.shootEvilCircle = function (x, y) {
   }
 };
 
+trytouch.shootEvilSquareX = function (x, y) {
+  let xspeedlist = [
+    -4,
+    -3.5,
+    -3,
+    -2.5,
+    -2,
+    -1.5,
+    -1,
+    -0.5,
+    0,
+    0.5,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    3.5,
+    3,
+    2.5,
+    2,
+    1.5,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    3.5,
+    3,
+    2.5,
+    2,
+    1.5,
+    1,
+    0.5,
+    0,
+    -0.5,
+    -1,
+    -1.5,
+    -2,
+    -2.5,
+    -3,
+    -3.5,
+    -4,
+    -3.5,
+    -3,
+    -2.5,
+    -2,
+    -1.5,
+    -1,
+    -1.5,
+    -2,
+    -2.5,
+    -3,
+    -3.5
+  ];
+  let yspeedlist = [
+    -4,
+    -3,
+    -2.4,
+    -2,
+    -1.732,
+    -1.5,
+    -1.414,
+    -1.2,
+    -1,
+    -1.2,
+    -1.414,
+    -1.5,
+    -1.732,
+    -2,
+    -2.4,
+    -3,
+    -4,
+    -3,
+    -2,
+    -1.732,
+    -1.414,
+    -1,
+    0,
+    1,
+    1.414,
+    1.732,
+    2,
+    3,
+    4,
+    3,
+    2.4,
+    2,
+    1.732,
+    1.5,
+    1.414,
+    1.2,
+    1,
+    1.2,
+    1.414,
+    1.5,
+    1.732,
+    2,
+    2.4,
+    3,
+    4,
+    3,
+    2,
+    1.732,
+    1.414,
+    1,
+    0,
+    -1,
+    -1.414,
+    -1.732,
+    -2,
+    -3
+  ];
+  for (let i = 0; i < xspeedlist.length; i++) {
+    let color;
+    if (i % 2) color = "cyan";
+    else color = "orange";
+    let ball = new trytouch.ball(
+      "enemy",
+      10,
+      x,
+      y,
+      5,
+      xspeedlist[i],
+      yspeedlist[i],
+      0,
+      false,
+      color
+    );
+    trytouch.ballArr.push(ball);
+    ball.show();
+  }
+};
+
 trytouch.shootEvilStar_left = function (x, y) {
   let xspeedlist = [
     -2,
@@ -992,6 +1213,66 @@ trytouch.shootEvilStar_right = function (x, y) {
   }
 };
 
+trytouch.shootEvilStar_Cassa = function (x, y) {
+  let xspeedlist = [
+    -2,
+    -1.732,
+    -1.414,
+    -1,
+    0,
+    1,
+    1.414,
+    1.732,
+    2,
+    1.732,
+    1.414,
+    1,
+    0,
+    -1,
+    -1.414,
+    -1.732,
+    -2,
+  ];
+  let yspeedlist = [
+    0,
+    -1,
+    -1.414,
+    -1.732,
+    -2,
+    -1.732,
+    -1.414,
+    -1,
+    0,
+    1,
+    1.414,
+    1.732,
+    2,
+    1.732,
+    1.414,
+    1,
+    0,
+  ];
+  for (let i = 0; i < xspeedlist.length; i++) {
+    let color;
+    if (i % 2) color = "cyan";
+    else color = "orange";
+    let ball = new trytouch.ball(
+      "enemy",
+      10,
+      x,
+      y,
+      5,
+      xspeedlist[i],
+      yspeedlist[i],
+      -0.4,
+      false,
+      color
+    );
+    trytouch.ballArr.push(ball);
+    ball.show();
+  }
+};
+
 trytouch.shootBloodySnake = function (x, y) {
   let xspeedlist = [0, 0, 0];
   let yspeedlist = [2, 2, 2];
@@ -1013,3 +1294,346 @@ trytouch.shootBloodySnake = function (x, y) {
     ball.show();
   }
 };
+
+trytouch.shootFullScreenX = function (x, y) {
+  for (let i = 0; i < trycvs.canvas.width; i = i + 30) {
+    let color = i % 40 < 20 ? "cyan" : "orange";
+    let ball_1 = new trytouch.ball(
+      "enemy",
+      20,
+      i,
+      480,
+      5,
+      i > 250 ? -2 : 2,
+      -2,
+      0,
+      false,
+      color
+    );
+    let ball_2 = new trytouch.ball(
+      "enemy",
+      20,
+      i,
+      20,
+      5,
+      i > 250 ? -2 : 2,
+      2,
+      0,
+      false,
+      color
+    );
+    trytouch.ballArr.push(ball_1);
+    ball_1.show();
+    trytouch.ballArr.push(ball_2);
+    ball_2.show();
+  }
+};
+
+trytouch.shootFullScreenCircle = function (x, y) {
+  for (let i = 0; i < trycvs.canvas.width; i = i + 30) {
+    let color = i % 40 < 20 ? "cyan" : "orange";
+    let ball_1 = new trytouch.ball(
+      "enemy",
+      20,
+      i,
+      480,
+      5,
+      i > 250 ? -2 : 2,
+      -2,
+      0,
+      true,
+      color
+    );
+    let ball_2 = new trytouch.ball(
+      "enemy",
+      20,
+      i,
+      20,
+      5,
+      i > 250 ? -2 : 2,
+      2,
+      0,
+      true,
+      color
+    );
+    trytouch.ballArr.push(ball_1);
+    ball_1.show();
+    trytouch.ballArr.push(ball_2);
+    ball_2.show();
+  }
+};
+
+trytouch.shootBia_enemy = function (x, y) {
+  let xspeedlist = [0];
+  let yspeedlist = [3];
+  for (let i = 0; i < xspeedlist.length; i++) {
+    let ball = new trytouch.ball(
+      "enemy",
+      20,
+      x,
+      y,
+      20,
+      xspeedlist[i],
+      yspeedlist[i],
+      0,
+      false,
+      "cyan"
+    );
+    trytouch.ballArr.push(ball);
+    ball.show();
+  }
+};
+
+trytouch.shootDeadLine = function (x, y) {
+  console.log("line");
+  for (let i = x - 25; i < x + 25; i += 5) {
+    let ball = new trytouch.ball("enemy", 5, i, y, 10, 0, 3, 0, false, "green");
+    trytouch.ballArr.push(ball);
+    ball.show();
+  }
+};
+
+trytouch.shootExImmortal = function (x, y) {
+  for (let i = x - 100; i < x + 100; i = i + 30) {
+    let color = i % 60 < 30 ? "cyan" : "orange";
+    let ball_1 = new trytouch.ball(
+      "enemy",
+      20,
+      i,
+      y - 50,
+      5,
+      0,
+      2,
+      0,
+      false,
+      "cyan"
+    );
+    let ball_2 = new trytouch.ball(
+      "enemy",
+      20,
+      i,
+      y + 50,
+      5,
+      0,
+      -2,
+      0,
+      false,
+      "orange"
+    );
+    trytouch.ballArr.push(ball_1);
+    ball_1.show();
+    trytouch.ballArr.push(ball_2);
+    ball_2.show();
+  }
+  for (let i = y - 100; i < y + 100; i = i + 30) {
+    let color = i % 60 < 30 ? "cyan" : "orange";
+    let ball_1 = new trytouch.ball(
+      "enemy",
+      20,
+      x - 50,
+      i,
+      5,
+      2,
+      0,
+      0,
+      false,
+      "cyan"
+    );
+    let ball_2 = new trytouch.ball(
+      "enemy",
+      20,
+      x + 50,
+      i,
+      5,
+      -2,
+      0,
+      0,
+      false,
+      "orange"
+    );
+    trytouch.ballArr.push(ball_1);
+    ball_1.show();
+    trytouch.ballArr.push(ball_2);
+    ball_2.show();
+  }
+};
+
+trytouch.shootExImmortalCircle = function (x, y) {
+  for (let i = x - 100; i < x + 100; i = i + 30) {
+    let color = i % 60 < 30 ? "cyan" : "orange";
+    let ball_1 = new trytouch.ball(
+      "enemy",
+      20,
+      i,
+      y - 50,
+      5,
+      0,
+      2,
+      -0.3,
+      false,
+      "cyan"
+    );
+    let ball_2 = new trytouch.ball(
+      "enemy",
+      20,
+      i,
+      y + 50,
+      5,
+      0,
+      -2,
+      0.3,
+      false,
+      "orange"
+    );
+    trytouch.ballArr.push(ball_1);
+    ball_1.show();
+    trytouch.ballArr.push(ball_2);
+    ball_2.show();
+  }
+  for (let i = y - 100; i < y + 100; i = i + 30) {
+    let color = i % 60 < 30 ? "cyan" : "orange";
+    let ball_1 = new trytouch.ball(
+      "enemy",
+      20,
+      x - 50,
+      i,
+      5,
+      2,
+      0,
+      0,
+      false,
+      "cyan"
+    );
+    let ball_2 = new trytouch.ball(
+      "enemy",
+      20,
+      x + 50,
+      i,
+      5,
+      -2,
+      0,
+      0,
+      false,
+      "orange"
+    );
+    trytouch.ballArr.push(ball_1);
+    ball_1.show();
+    trytouch.ballArr.push(ball_2);
+    ball_2.show();
+  }
+};
+
+trytouch.shootCallBia = function (y) {
+  if (plane.enemyArr.length <= 1) {
+    let enemy = new plane.enemyPlane("013", 100, 40, y, 20, 2, 0);
+    plane.enemyArr.push(enemy);
+    enemy.show();
+    let enemy2 = new plane.enemyPlane("013", 100, 460, y, 20, -2, 0);
+    plane.enemyArr.push(enemy2);
+    enemy2.show();
+  }
+};
+
+trytouch.shootCallBiuBiu = function (y) {
+  if (plane.enemyArr.length <= 10) {
+    let enemy = new plane.enemyPlane("016", 100, 40, y, 20, 2, 0);
+    plane.enemyArr.push(enemy);
+    enemy.show();
+  }
+};
+
+trytouch.shootCallWall = function (x, y) {
+  let enemy = new plane.enemyPlane("021", 10, x, y, 20, 0, 2);
+  plane.enemyArr.push(enemy);
+  enemy.show();
+};
+
+trytouch.shootSnowStorm_3_enemy = function (x, y) {
+  trytouch.shootSnowStorm_2_enemy(x, y);
+  let xspeedlist = [-0.5, 0.5];
+  let yspeedlist = [2, 2];
+  let aspeedlist = [-0.2, 0.2];
+  let bulletColor = "green";
+  let bulletDamage = 10;
+  for (let i = 0; i < xspeedlist.length; i++) {
+    let ball = new trytouch.ball(
+      "enemy",
+      bulletDamage,
+      x,
+      y,
+      5,
+      xspeedlist[i],
+      yspeedlist[i],
+      aspeedlist[i],
+      false,
+      bulletColor
+    );
+    trytouch.ballArr.push(ball);
+    ball.show();
+  }
+};
+
+trytouch.shootCallLargeWall = function (x, y) {
+  let enemy = new plane.enemyPlane("025", 50, x, y, 20, 0, 2);
+  plane.enemyArr.push(enemy);
+  enemy.show();
+  let enemy1 = new plane.enemyPlane("025", 50, x, y, 20, -2, 2);
+  plane.enemyArr.push(enemy1);
+  enemy1.show();
+  let enemy2 = new plane.enemyPlane("025", 50, x, y, 20, 2, 2);
+  plane.enemyArr.push(enemy2);
+  enemy2.show();
+};
+
+trytouch.shootSnowStorm_enemy = function (x, y) {
+  let xspeedlist = [-2, 2];
+  let yspeedlist = [0, 0];
+  let aspeedlist = [0.5, -0.5];
+  let bulletColor = "green";
+  let bulletDamage = 10;
+  for (let i = 0; i < xspeedlist.length; i++) {
+    let ball = new trytouch.ball(
+      "enemy",
+      bulletDamage,
+      x,
+      y,
+      5,
+      xspeedlist[i],
+      yspeedlist[i],
+      aspeedlist[i],
+      false,
+      bulletColor
+    );
+    trytouch.ballArr.push(ball);
+    ball.show();
+  }
+};
+
+trytouch.shootSnowStorm_2_enemy = function (x, y) {
+  trytouch.shootSnowStorm_enemy(x, y);
+  let xspeedlist = [-1.5, 1.5];
+  let yspeedlist = [0.5, 0.5];
+  let aspeedlist = [0.4, -0.4];
+  let bulletColor = "green";
+  let bulletDamage = 10;
+  for (let i = 0; i < xspeedlist.length; i++) {
+    let ball = new trytouch.ball(
+      "enemy",
+      bulletDamage,
+      x,
+      y,
+      5,
+      xspeedlist[i],
+      yspeedlist[i],
+      aspeedlist[i],
+      false,
+      bulletColor
+    );
+    trytouch.ballArr.push(ball);
+    ball.show();
+  }
+};
+
+
+
+

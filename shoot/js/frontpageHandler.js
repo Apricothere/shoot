@@ -168,7 +168,7 @@ $(function () {
       .delay(3000)
       .queue(function () {
         $(this).button("reset");
-        control.gameStart(1);
+        control.gameStart(2);
       });
   });
 });
@@ -255,9 +255,74 @@ $(function () {
     $(this)
       .delay(3000)
       .queue(function () {
-        $("#level1Title")[0].innerText="1-迷雾";
+        $("#level1Title")[0].innerText="1-惊变";
         $(this).button("reset");
         control.gameStart(1);
+      });
+  });
+});
+
+$(function () {
+  $("#level2Img").click(function () {
+    $("#level2Title")[0].innerText="loading...";
+    $(this)
+      .delay(3000)
+      .queue(function () {
+        $("#level2Title")[0].innerText="2-噩梦";
+        $(this).button("reset");
+        control.gameStart(2);
+      });
+  });
+});
+
+$(function () {
+  $("#level3Img").click(function () {
+    $("#level3Title")[0].innerText="loading...";
+    $(this)
+      .delay(3000)
+      .queue(function () {
+        $("#level3Title")[0].innerText="3-朋友";
+        $(this).button("reset");
+        control.gameStart(3);
+      });
+  });
+});
+
+$(function () {
+  $("#level4Img").click(function () {
+    $("#level4Title")[0].innerText="loading...";
+    $(this)
+      .delay(3000)
+      .queue(function () {
+        $("#level4Title")[0].innerText="4-回报";
+        $(this).button("reset");
+        control.gameStart(4);
+      });
+  });
+});
+
+$(function () {
+  $("#level5Img").click(function () {
+    $("#level5Title")[0].innerText="loading...";
+    $(this)
+      .delay(3000)
+      .queue(function () {
+        $("#level4Title")[0].innerText="5-梦醒";
+        $(this).button("reset");
+        control.gameStart(5);
+      });
+  });
+});
+
+$(function () {
+  $("#level6Img").click(function () {
+    $("#level6Title")[0].innerText="loading...";
+    $(this)
+      .delay(3000)
+      .queue(function () {
+        $("#level6Title")[0].innerText="6-赎罪";
+        $(this).button("reset");
+        control.gameStart(6);
       });
   });
 });

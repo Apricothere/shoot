@@ -80,7 +80,7 @@
             </div>
         </div>
 
-        <div class="gameMenu levelList">
+        <!-- <div class="gameMenu levelList">
             <div class="btn-group" data-toggle="buttons">
                 <label class="btn btn-primary btn-mainStage" id="level11">
                     <input type="radio" name="options" id="option1" data-loading-text="加载中..." />1 迷雾 </label><br />
@@ -91,7 +91,7 @@
                     <input type="radio" name="options" id="option3" data-loading-text="加载中..." />
                     3 噩梦 </label><br />
             </div>
-        </div>
+        </div> -->
 
         <div class="gameMenu chooseList">
             <div class="btn-group" data-toggle="buttons">
@@ -120,6 +120,11 @@
                             <strong>游戏规则：</strong><br />
                             使用方向键控制你的玉移动，躲避子弹，消灭敌人，获取分数，走向胜利。<br />
                             如果你被打中会由红色变为绿色，并进入短暂的无敌时间。
+                            使用方向键控制你的玉移动，躲避子弹，消灭敌人，获取分数，走向胜利。<br />
+                            如果你被打中会由红色变为绿色，并进入短暂的无敌时间，<br>
+                            但是你会损失一件武器，这件武器会在一段时间后自我修复。<br>
+                            三个技能的释放分别是z,x,c键。<br> 
+                            点击下面的关卡图片，就可以开始作战了。
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -146,8 +151,8 @@
                     <div class="modal-body">
                         <p class="discription_text">
                             <strong>飞行玉小游戏</strong><br />
-                            作者: 杏花游侠，Mos-Hu<br />
-                            版本: 1.01<br />
+                            作者: shoot小游戏工作组<br />
+                            版本: 1.20<br />
                         </p>
                         <hr />
                         <p class="discription_text">
@@ -336,22 +341,37 @@
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                 <li data-target="#myCarousel" data-slide-to="1"></li>
                 <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+                <li data-target="#myCarousel" data-slide-to="4"></li>
+                <li data-target="#myCarousel" data-slide-to="5"></li>
             </ol>   
             <!-- 轮播（Carousel）项目 -->
             <div class="carousel-inner">
                 <div class="item active">
-                    <img src="assets/imgs/maps/1_shadow.png" alt="First slide" class="levelImg"  id="level1Img">
-                    <div class="carousel-caption" id="level1Title">1-迷雾</div>
+                    <img src="assets/imgs/maps/1_shadow.png" alt="First slide" class="levelImg" id="level1Img">
+                    <div class="carousel-caption" id="level1Title">1-惊变</div>
                     <!-- <button id="level1" class="btn btn-primary" data-loading-text="Loading..." 
                     type="button">  -->
                 </div>
                 <div class="item">
-                    <img src="assets/imgs/maps/2_shock.png" alt="Second slide" class="levelImg">
-                    <div class="carousel-caption">2-惊变</div>
+                    <img src="assets/imgs/maps/2_shock.png" alt="Second slide" class="levelImg" id="level2Img">
+                    <div class="carousel-caption" id="level2Title">2-噩梦</div>
                 </div>
                 <div class="item">
-                    <img src="assets/imgs/maps/3_nightmare.png" alt="Third slide" class="levelImg">
-                    <div class="carousel-caption">3-噩梦</div>
+                    <img src="assets/imgs/maps/3_nightmare.png" alt="Third slide" class="levelImg" id="level3Img">
+                    <div class="carousel-caption" id="level3Title">3-朋友</div>
+                </div>
+                <div class="item">
+                    <img src="assets/imgs/maps/4_reward.png" alt="Forth slide" class="levelImg" id="level4Img">
+                    <div class="carousel-caption" id="level4Title">4-回报</div>
+                </div>
+                <div class="item">
+                    <img src="assets/imgs/maps/5_wake.png" alt="Fifth slide" class="levelImg" id="level5Img">
+                    <div class="carousel-caption" id="level5Title">5-梦醒</div>
+                </div>
+                <div class="item">
+                    <img src="assets/imgs/maps/5_wake.png" alt="Sixth slide" class="levelImg" id="level6Img">
+                    <div class="carousel-caption" id="level6Title">6-赎罪</div>
                 </div>
             </div>
             <!-- 轮播（Carousel）导航 -->
@@ -377,6 +397,38 @@
     <img class="explode" src="assets/imgs/explode/8.png" alt="你的浏览器不支持img标签" hidden></img>
     <img class="explode" src="assets/imgs/explode/10.png" alt="你的浏览器不支持img标签" hidden></img>
     <img class="explode" src="assets/imgs/explode/11.png" alt="你的浏览器不支持img标签" hidden></img>
+
+    <img id="self" src="assets/imgs/chars/self.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="001" src="assets/imgs/chars/001.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="002" src="assets/imgs/chars/003.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="003-1" src="assets/imgs/chars/004.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="003-2" src="assets/imgs/chars/004.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="004" src="assets/imgs/chars/m003.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="005" src="assets/imgs/chars/003.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="006" src="assets/imgs/chars/m001.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="007" src="assets/imgs/chars/m004.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="008" src="assets/imgs/chars/m004.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="009" src="assets/imgs/chars/m003.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="010-1" src="assets/imgs/chars/004.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="010-2" src="assets/imgs/chars/004.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="011" src="assets/imgs/chars/m005.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="012" src="assets/imgs/chars/crystal.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="013" src="assets/imgs/chars/crystal.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="014" src="assets/imgs/chars/crystal2.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="015" src="assets/imgs/chars/m002.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="016" src="assets/imgs/chars/006.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="017" src="assets/imgs/chars/007.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="018" src="assets/imgs/chars/008.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="019" src="assets/imgs/chars/002.png" alt="你的浏览器不支持img标签" hidden></img> 
+    <img id="020" src="assets/imgs/chars/001.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="021" src="assets/imgs/chars/exploder.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="022" src="assets/imgs/chars/001.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="023" src="assets/imgs/chars/001.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="024" src="assets/imgs/chars/005.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="025" src="assets/imgs/chars/005.png" alt="你的浏览器不支持img标签" hidden></img>
+    <img id="026" src="assets/imgs/chars/008.png" alt="你的浏览器不支持img标签" hidden></img>
+
+    
 
     <div class="clear"></div>
 

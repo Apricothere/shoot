@@ -12,8 +12,10 @@ plane.enemyPlane = function (type, life, x, y, r, xspeed, yspeed) {
   this.xspeed = xspeed; //||control.r(5)+1.5;
   this.yspeed = yspeed; //||control.r(5)+1.5;
   if (this.type == "self") this.color = "red";
-  else this.color = "#" + parseInt(Math.random() * 0xffffff).toString(16);
+  //else this.color = "#" + parseInt(Math.random() * 0xffffff).toString(16);
+  else this.color = "rgba(255,255,255,0)";
   this.protecting = false;
+  this.img = document.getElementById(this.type);
 };
 
 plane.enemyPlane.prototype.show = function (protectStartCount, count) {
@@ -35,6 +37,25 @@ plane.enemyPlane.prototype.show = function (protectStartCount, count) {
     this.color,
     5
   );
+  if(this.type!='self')
+  {
+  trycvs.c.drawImage(
+    this.img,
+    this.x - 1.2 * this.r,
+    this.y - 1.5 * this.r,
+    2.4 * this.r,
+    3 * this.r
+  );
+  }
+  else{
+    trycvs.c.drawImage(
+      this.img,
+      this.x - 1.5 * this.r,
+      this.y - 2.5 * this.r,
+      3 * this.r,
+      5 * this.r
+    );
+  }
 };
 
 plane.enemyPlane.prototype.protectHandler = function (
@@ -85,7 +106,121 @@ plane.enemyPlane.prototype.move = function () {
     if (this.y >= 150) {
       this.yspeed = 0;
     }
+  } else if (this.type == "007") {
+    //公主-随机
+    this.xspeed += control.r(4) - 2;
+    if (this.xspeed > 4) this.xspeed = 4;
+    else if (this.xspeed < -4) this.xspeed = -4;
+    this.yspeed += control.r(4) - 2;
+    if (this.yspeed > 4) this.yspeed = 4;
+    else if (this.yspeed < -4) this.yspeed = -4;
+    if (this.y >= 150) {
+      this.yspeed = 0;
+    }
+  } else if (this.type == "008") {
+    //钻石
+    if (this.y >= 120) {
+      this.yspeed = 0;
+      if (this.xspeed == 0) this.xspeed = 2;
+    }
+  } else if (this.type == "009") {
+    //钻石
+    if (this.y >= 140) {
+      this.yspeed = 0;
+      if (this.xspeed == 0) this.xspeed = 2;
+    }
+    if (control.r(100) <= 5) {
+      this.yspeed = -2;
+    }
+  } else if (this.type == "010-1" || this.type == "010-2") {
+    //矩形
+    if (this.y >= 150) {
+      this.yspeed = 0;
+    }
+  } else if (this.type == "011") {
+    //boss
+    if (this.y >= 150) {
+      this.yspeed = 0;
+    }
+  } else if (this.type == "012") {
+    //钻石
+    if (this.y >= 120) {
+      this.yspeed = 0;
+      if (this.xspeed == 0) this.xspeed = 2;
+    }
+  } else if (this.type == "013") {
+    //钻石
+    if (this.y >= 140) {
+      this.yspeed = 0;
+      if (this.xspeed == 0) this.xspeed = 2;
+    }
+    if (control.r(100) <= 1) {
+      this.yspeed = -2;
+    }
+  } else if (this.type == "014") {
+    //钻石
+    if (this.y >= 120) {
+      this.yspeed = 0;
+      if (this.xspeed == 0) this.xspeed = 2;
+    }
+  } else if (this.type == "015") {
+    //boss
+    if (this.y >= 100) {
+      this.yspeed = 0;
+    }
+  } else if (this.type == "016") {
+    if (this.y >= 140) {
+      this.yspeed = 0;
+      if (this.xspeed == 0) this.xspeed = 2;
+    }
+    if (control.r(100) <= 1) {
+      this.yspeed = -2;
+    }
+  } else if (this.type == "017" || this.type == "018") {
+    //钻石
+    if (this.y >= 140) {
+      this.yspeed = 0;
+      if (this.xspeed == 0) this.xspeed = 2;
+    }
+  } else if (this.type == "019") {
+    if (this.y >= 140) {
+      this.yspeed = 0;
+      if (this.xspeed == 0) this.xspeed = 2;
+    }
+    if (control.r(100) <= 1) {
+      this.yspeed = -2;
+    }
+  } else if (this.type == "020") {
+    if (this.y >= 100) {
+      this.yspeed = 0;
+      if (this.xspeed == 0) this.xspeed = 2;
+    }
+  } else if (this.type == "021") {
+    if (this.y >= 150) this.yspeed = 0;
+  } else if (this.type == "022") {
+    if (this.y >= 150) {
+      this.yspeed = 0;
+      if (this.xspeed == 0) this.xspeed = 2;
+    }
+  } else if (this.type == "023") {
+    if (this.y >= 150) {
+      this.yspeed = 0;
+    }
+  } else if (this.type == "024") {
+    if (this.y >= 150) {
+      this.yspeed = 0;
+    }
+  } else if (this.type == "025") {
+    if (this.y >= 250) {
+      this.yspeed = 0;
+    }
   }
+  else if (this.type == "026") {
+    if (this.y >= 100) {
+      this.yspeed = 0;
+    }
+  }
+
   if (this.x + this.r > trycvs.canvas.width || this.x - this.r < 0) {
     this.xspeed = -this.xspeed;
   }
@@ -103,6 +238,12 @@ plane.enemyPlane.prototype.death = function (index) {
   }
   if (this.life <= 0) {
     plane.enemyArr.splice(index, 1);
+    if (this.type == "021") {
+      trytouch.shootBloodySnake(this.x, this.y);
+    } else if (this.type == "025") {
+      trytouch.shootEvilCircle(this.x, this.y);
+    }
+
     if (this.type == "001") {
       control.score = control.updateScore(control.score, 100);
       //draw(this.x,this.y);
@@ -116,7 +257,7 @@ plane.enemyPlane.prototype.death = function (index) {
       control.score = control.updateScore(control.score, 400);
     } else if (this.type == "006") {
       control.score = control.updateScore(control.score, 1000);
-    }
+    } else control.score = control.updateScore(control.score, 100);
     control.replayAudioEffect("explodeAudio");
     control.boomAt(this.x, this.y, this.r);
   }
@@ -190,6 +331,128 @@ plane.enemyPlane.prototype.shoot = function (count) {
       else if (count % 10 == 0 && count % 500 > 350)
         trytouch.shootEvilStar_right(this.x, this.y + this.r);
     }
+  } else if (this.type == "007") {
+    if (count % 150 == 0) {
+      trytouch.shootSevenBulletsForPrincess(this.x, this.y + this.r);
+    }
+  } else if (this.type == "008") {
+    if (count % 20 == 0 && count % 500 > 350)
+      trytouch.shootEvilStar_right(this.x, this.y + this.r);
+  } else if (this.type == "009") {
+    if (count % 20 == 0 && count % 200 < 100) {
+      trytouch.shootBloodySnake(this.x, this.y + this.r);
+    }
+  } else if (this.type == "010-1") {
+    if (count % 10 == 0 && count % 300 < 150) {
+      trytouch.shootBloodySnake(this.x, this.y + this.r);
+    } else if (count % 55 == 0) {
+      trytouch.shootSummerSquare_left(this.x, this.y + this.r);
+    }
+  } else if (this.type == "010-2") {
+    if (count % 10 == 0 && count % 300 < 150) {
+      trytouch.shootBloodySnake(this.x, this.y + this.r);
+    } else if (count % 55 == 0) {
+      trytouch.shootSummerSquare_right(this.x, this.y + this.r);
+    }
+  } else if (this.type == "011") {
+    if (count % 10 == 0 && count % 50 < 25) {
+      trytouch.shootBloodySnake(this.x, this.y + this.r);
+    } else if (count % 55 == 0) {
+      trytouch.shootHellPrincess(this.x, this.y + this.r);
+    }
+    if (count % 500 == 0) {
+      trytouch.shootFullScreenX(this.x, this.y + this.r);
+    }
+  } else if (this.type == "012") {
+    if (count % 150 == 0) {
+      trytouch.shootDeadLine(this.x, this.y + this.r);
+    }
+  } else if (this.type == "013") {
+    if (count % 150 == 0) {
+      trytouch.shootBia_enemy(this.x, this.y + this.r);
+    }
+  } else if (this.type == "014") {
+    if (count % 150 == 0) {
+      trytouch.shootExImmortal(this.x, this.y + this.r);
+    }
+  } else if (this.type == "015") {
+    if (count % 20 == 0 && count % 500 < 100)
+      trytouch.shootEvilStar_left(this.x, this.y + this.r);
+    else if (count % 20 == 0 && count % 500 > 400)
+      trytouch.shootEvilStar_right(this.x, this.y + this.r);
+    if (count % 1000 == 0) {
+      trytouch.shootCallBia(150);
+    }
+  } else if (this.type == "016") {
+    //人类
+    if (count % 10 == 0 && count % 50 < 25) {
+      trytouch.shootBiuBiu_enemy(this.x, this.y + this.r);
+    }
+  } else if (this.type == "017") {
+    if (count % 10 == 0 && count % 100 < 50) {
+      trytouch.shootBiuBiu_enemy(this.x, this.y + this.r);
+    } else if (count % 10 == 0 && count % 100 > 80) {
+      trytouch.shootBloodySnake(this.x, this.y + this.r);
+    }
+  } else if (this.type == "018") {
+    if (count % 10 == 0 && count % 100 < 50) {
+      trytouch.shootBiuBiu_enemy(this.x, this.y + this.r);
+    } else if (count % 10 == 0 && count % 100 > 80) {
+      trytouch.shootSevenBulletsForPrincess(this.x, this.y + this.r);
+    }
+  } else if (this.type == "019") {
+    let lifePerc = this.life / this.maxlife;
+    let rollDie = control.r(100);
+    if (lifePerc > 0.5) {
+      if (count % 10 == 0 && count % 500 < 150) {
+        trytouch.shootSnowStorm_enemy(this.x, this.y + this.r);
+      } else if (count % 10 == 0 && count % 500 > 400) {
+        trytouch.shootBiuBiu_enemy(this.x, this.y + this.r);
+      } else if (count % 10 == 0 && rollDie < 10) {
+        trytouch.shootBloodySnake(this.x, this.y + this.r);
+      }
+    } else {
+      if (count % 20 == 0 && count % 500 < 150) {
+        trytouch.shootSnowStorm_2_enemy(this.x, this.y + this.r);
+      } else if (count % 10 == 0 && count % 500 > 300) {
+        trytouch.shootBiuBiu_2_enemy(this.x, this.y + this.r);
+      } else if (count % 10 == 0 && rollDie < 40) {
+        trytouch.shootBiuBiu_enemy(this.x, this.y + this.r);
+      }
+    }
+  } else if (this.type == "020") {
+    if (count % 200 == 0) {
+      trytouch.shootCallWall(this.x, this.y);
+    }
+  } else if (this.type == "022") {
+    if (count % 50 == 0 && count % 500 < 150) {
+      trytouch.shootExImmortalCircle(this.x, this.y);
+    }
+  } else if (this.type == "023") {
+    if (count % 10 == 0 && count % 500 < 300) {
+      trytouch.shootEvilStar_Cassa(this.x, this.y);
+    }
+  } else if (this.type == "024") {
+    if (count % 800 == 0) {
+      trytouch.shootCallLargeWall(this.x, this.y);
+    }
+    if (count % 1000 == 0 && plane.enemyArr.length < 7) {
+      trytouch.shootFullScreenCircle(this.x, this.y);
+    }
+    if (count % 200 == 0) {
+      trytouch.shootDeadLine(this.x + control.r(100) - 50, 40);
+    } else if (count % 40 == 0 && count % 1000 < 500) {
+      trytouch.shootEvilSquareX(this.x, this.y);
+    }
+  } else if (this.type == "026") {
+    if (count % 1000 == 0) {
+      trytouch.shootCallBiuBiu(this.x, 150);
+    }
+    if (count % 10 == 0 && count % 500 < 150) {
+      trytouch.shootSnowStorm_enemy(this.x, this.y + this.r);
+    } else if (count % 10 == 0 && count % 500 > 400) {
+      trytouch.shootBiuBiu_enemy(this.x, this.y + this.r);
+    }
   }
 };
 
@@ -243,8 +506,24 @@ plane.selfMove = function (self) {
       plane.isPressing = false;
     }
   };
+  if (control.level == 3) {
+    self.xspeed /= 1.5;
+    self.yspeed /= 1.5;
+  }
   self.x += self.xspeed;
   self.y += self.yspeed;
+  for (let i = 0; i < plane.enemyArr.length; i++) {
+    let enemy = plane.enemyArr[i];
+    let distance = Math.sqrt((self.x - enemy.x) ** 2 + (self.y - enemy.y) ** 2);
+    if (distance <= self.r + enemy.r && self.protecting != true) {
+      skill.lossPassive();
+      self.life = control.updateLife(self.life, -100);
+      control.replayAudioEffect("biuAudio");
+      self.protecting = true;
+      return "protect";
+    }
+  }
+
   return false;
 };
 
@@ -255,7 +534,7 @@ plane.selfBirth = function (count) {
       100000,
       trycvs.canvas.width / 2,
       trycvs.canvas.height - 40,
-      20,
+      12,
       0,
       0
     );
@@ -338,7 +617,7 @@ plane.enemyBirth = function (level, count, stage) {
     } else if (stage.index == 6) {
       //boss
       if (count % 200 == 0) {
-        let enemy = new plane.enemyPlane("006", 1000, 250, 40, 20, 0, 2);
+        let enemy = new plane.enemyPlane("006", 1000, 250, 40, 40, 0, 2);
         plane.enemyArr.push(enemy);
         enemy.show();
       } else return;
@@ -346,10 +625,10 @@ plane.enemyBirth = function (level, count, stage) {
   } else if (level == 2) {
     if (stage.clear && !stage.isLastTime) return;
     if (stage.index == 0) {
-      //公主
-      if (count % 200 == 0 && plane.enemyArr.length < 2) {
+      //公主-随机模式
+      if (count % 200 == 0 && plane.enemyArr.length < 3) {
         let enemy = new plane.enemyPlane(
-          "001",
+          "007",
           100,
           control.r(420) + 40,
           40,
@@ -362,8 +641,8 @@ plane.enemyBirth = function (level, count, stage) {
       } else return;
     } else if (stage.index == 1) {
       if (count % 200 == 0) {
-        //圆阵
-        let enemy = new plane.enemyPlane("005", 100, 250, 40, 20, 0, 2);
+        //圆阵-螺旋
+        let enemy = new plane.enemyPlane("008", 100, 250, 40, 20, 0, 2);
         plane.enemyArr.push(enemy);
         enemy.show();
       } else return;
@@ -371,7 +650,7 @@ plane.enemyBirth = function (level, count, stage) {
       //毒蛇
       if (count % 200 == 0 && plane.enemyArr.length < 3) {
         let enemy = new plane.enemyPlane(
-          "004",
+          "009",
           100,
           control.r(420) + 40,
           40,
@@ -383,12 +662,12 @@ plane.enemyBirth = function (level, count, stage) {
         enemy.show();
       } else return;
     } else if (stage.index == 3) {
-      //方阵
+      //
       if (count % 200 == 0 && plane.enemyArr.length == 0) {
-        let enemy = new plane.enemyPlane("003-1", 100, 100, 40, 20, 0, 2);
+        let enemy = new plane.enemyPlane("010-1", 100, 100, 40, 20, 0, 2);
         plane.enemyArr.push(enemy);
         enemy.show();
-        let enemy2 = new plane.enemyPlane("003-2", 100, 400, 40, 20, 0, 2);
+        let enemy2 = new plane.enemyPlane("010-2", 100, 400, 40, 20, 0, 2);
         plane.enemyArr.push(enemy2);
         enemy2.show();
       } else return;
@@ -416,12 +695,236 @@ plane.enemyBirth = function (level, count, stage) {
     } else if (stage.index == 6) {
       //boss
       if (count % 200 == 0) {
-        let enemy = new plane.enemyPlane("006", 1000, 250, 40, 20, 0, 2);
+        let enemy = new plane.enemyPlane("011", 1000, 250, 40, 40, 0, 2);
         plane.enemyArr.push(enemy);
         enemy.show();
       } else return;
     } else return;
+  } else if (level == 3) {
+    if (stage.clear && !stage.isLastTime) return;
+    if (stage.index == 0) {
+      //毒蛇-随机模式
+      if (count % 200 == 0 && plane.enemyArr.length < 3) {
+        let enemy = new plane.enemyPlane(
+          "009",
+          100,
+          control.r(420) + 40,
+          40,
+          20,
+          0,
+          2
+        );
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else if (stage.index == 1) {
+      if (count % 200 == 0) {
+        //横排人
+        let enemy = new plane.enemyPlane("012", 100, 250, 40, 20, 0, 2);
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else if (stage.index == 2) {
+      //大玉
+      if (count % 200 == 0 && plane.enemyArr.length < 3) {
+        let enemy = new plane.enemyPlane(
+          "013",
+          100,
+          control.r(420) + 40,
+          40,
+          20,
+          0,
+          2
+        );
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else if (stage.index == 3) {
+      //井字
+      if (count % 200 == 0 && plane.enemyArr.length == 0) {
+        let enemy = new plane.enemyPlane("014", 100, 250, 40, 20, 0, 2);
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else if (stage.index == 4) {
+      //圆管
+      if (count % 200 == 0 && plane.enemyArr.length < 1) {
+        let enemy = new plane.enemyPlane(
+          "008",
+          100,
+          control.r(420) + 40,
+          40,
+          20,
+          0,
+          2
+        );
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else if (stage.index == 5) {
+      //boss
+      if (!stage.clear) {
+        alert("警告：boss即将出现");
+        stage.clear = true;
+      } else return;
+    } else if (stage.index == 6) {
+      //boss
+      if (count % 200 == 0) {
+        let enemy = new plane.enemyPlane("015", 1000, 250, 40, 40, 0, 2);
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else return;
+  } else if (level == 4) {
+    if (stage.clear && !stage.isLastTime) return;
+    if (stage.index == 0) {
+      //毒蛇-随机模式
+      if (count % 200 == 0 && plane.enemyArr.length < 2) {
+        let enemy = new plane.enemyPlane(
+          "016",
+          100,
+          control.r(420) + 40,
+          40,
+          20,
+          0,
+          2
+        );
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else if (stage.index == 1) {
+      if (count % 200 == 0) {
+        //横排人
+        let enemy = new plane.enemyPlane("017", 100, 250, 40, 20, 0, 2);
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else if (stage.index == 2) {
+      //大玉
+      if (count % 200 == 0 && plane.enemyArr.length < 3) {
+        let enemy = new plane.enemyPlane(
+          "016",
+          100,
+          control.r(420) + 40,
+          40,
+          20,
+          0,
+          2
+        );
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else if (stage.index == 3) {
+      //井字
+      if (count % 200 == 0 && plane.enemyArr.length == 0) {
+        let enemy = new plane.enemyPlane("018", 100, 250, 40, 20, 0, 2);
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else if (stage.index == 4) {
+      //圆管
+      if (count % 200 == 0 && plane.enemyArr.length < 3) {
+        let enemy = new plane.enemyPlane(
+          "013",
+          100,
+          control.r(420) + 40,
+          40,
+          20,
+          0,
+          2
+        );
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else if (stage.index == 5) {
+      //boss
+      if (!stage.clear) {
+        alert("警告：boss即将出现");
+        stage.clear = true;
+      } else return;
+    } else if (stage.index == 6) {
+      //boss
+      if (count % 200 == 0) {
+        let enemy = new plane.enemyPlane("019", 1000, 250, 40, 20, 0, 2);
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else return;
+  } else if (level == 5) {
+    if (stage.clear && !stage.isLastTime) return;
+    if (stage.index == 0) {
+      //毒蛇-随机模式
+      if (count % 200 == 0 && plane.enemyArr.length < 3) {
+        let enemy = new plane.enemyPlane(
+          "020",
+          100,
+          control.r(420) + 40,
+          40,
+          20,
+          0,
+          2
+        );
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else if (stage.index == 1) {
+      if (count % 200 == 0 && plane.enemyArr.length < 1) {
+        let enemy = new plane.enemyPlane("023", 100, 250, 40, 20, 0, 2);
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else if (stage.index == 2) {
+      if (count % 200 == 0 && plane.enemyArr.length < 1) {
+        let enemy = new plane.enemyPlane(
+          "022",
+          100,
+          control.r(420) + 40,
+          40,
+          20,
+          0,
+          2
+        );
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else if (stage.index == 3) {
+      //井字
+      if (count % 200 == 0 && plane.enemyArr.length < 3) {
+        let enemy = new plane.enemyPlane("012", 100, 250, 40, 20, 0, 2);
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else if (stage.index == 4) {
+      //圆管
+      if (count % 200 == 0 && plane.enemyArr.length == 0) {
+        let enemy = new plane.enemyPlane("006", 200, 250, 40, 20, 0, 2);
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else if (stage.index == 5) {
+      //boss
+      if (!stage.clear) {
+        alert("警告：boss即将出现");
+        stage.clear = true;
+      } else return;
+    } else if (stage.index == 6) {
+      //boss
+      if (count % 200 == 0) {
+        let enemy = new plane.enemyPlane("024", 1000, 250, 40, 20, 0, 2);
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      } else return;
+    } else return;
+  } else if (level == 6) {
+    if (stage.index == 6) {
+      if (count % 200 == 0 && plane.enemyArr.length < 1) {
+        let enemy = new plane.enemyPlane("026", 1000, 250, 40, 20, 0, 2);
+        plane.enemyArr.push(enemy);
+        enemy.show();
+      }
+    }
   }
+
   stage.enemyCount++;
   if (stage.enemyCount >= stage.maxEnemyCount) stage.clear = true;
 };

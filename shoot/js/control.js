@@ -123,6 +123,7 @@ control.stage.prototype.nextStage = function (enemyArr, count) {
     } else return this;
   } else {
     if (count - this.enterTime > this.lastTime) {
+      if (this.index == control.stageList.length - 1) return "win";
       control.stageList[this.index + 1].enterTime = count;
       if (this.index + 1 == control.stageList.length - 1) {
         vueAttach.progress.styleObject.display = "block";
@@ -156,13 +157,76 @@ control.initStage = function (level) {
       control.stageList.push(stage);
     }
     control.stageList[0].isLastTime = true;
-    control.stageList[1].maxEnemyCount = 1;
+    control.stageList[1].maxEnemyCount = 2;
     control.stageList[2].isLastTime = true;
     //control.stageList[4].isLastTime=true;
-    control.stageList[4].maxEnemyCount = 8;
+    control.stageList[4].maxEnemyCount = 7;
     control.stageList[5].isLastTime = true;
     control.stageList[5].lastTime = 500;
     control.stageList[6].maxEnemyCount = 1;
+    control.currentStage = control.stageList[0];
+  }
+  else if (level == 3) {
+    for (let i = 0; i < 7; i++) {
+      let stage = new control.stage(i, 2, 1500, false);
+      control.stageList.push(stage);
+    }
+    control.stageList[0].isLastTime = true;
+    control.stageList[1].maxEnemyCount = 2;
+    control.stageList[2].isLastTime = true;
+    //control.stageList[4].isLastTime=true;
+    control.stageList[4].maxEnemyCount = 3;
+    control.stageList[5].isLastTime = true;
+    control.stageList[5].lastTime = 500;
+    control.stageList[6].maxEnemyCount = 1;
+    control.currentStage = control.stageList[0];
+  }
+  else if (level == 4) {
+    for (let i = 0; i < 7; i++) {
+      let stage = new control.stage(i, 2, 1500, false);
+      control.stageList.push(stage);
+    }
+    control.stageList[0].isLastTime = true;
+    control.stageList[1].maxEnemyCount = 2;
+    control.stageList[2].isLastTime = true;
+    //control.stageList[4].isLastTime=true;
+    control.stageList[4].maxEnemyCount = 4;
+    control.stageList[5].isLastTime = true;
+    control.stageList[5].lastTime = 500;
+    control.stageList[6].maxEnemyCount = 1;
+    control.currentStage = control.stageList[0];
+  }
+  else if (level == 5) {
+    for (let i = 0; i < 7; i++) {
+      let stage = new control.stage(i, 2, 1500, false);
+      control.stageList.push(stage);
+    }
+    control.stageList[0].isLastTime = true;
+    control.stageList[1].maxEnemyCount = 2;
+    control.stageList[2].isLastTime = true;
+    //control.stageList[4].isLastTime=true;
+    control.stageList[4].maxEnemyCount = 4;
+    control.stageList[5].isLastTime = true;
+    control.stageList[5].lastTime = 500;
+    control.stageList[6].maxEnemyCount = 1;
+    control.currentStage = control.stageList[0];
+  }
+  else if (level == 6) {
+    skill.passiveList=[];
+    for (let i = 0; i < 7; i++) {
+      let stage = new control.stage(i, 2, 1500, false);
+      control.stageList.push(stage);
+    }
+    control.stageList[0].isLastTime = true;
+    control.stageList[1].maxEnemyCount = 2;
+    control.stageList[2].isLastTime = true;
+    //control.stageList[4].isLastTime=true;
+    control.stageList[4].maxEnemyCount = 4;
+    control.stageList[5].isLastTime = true;
+    control.stageList[5].lastTime = 500;
+    control.stageList[6].maxEnemyCount = 1;
+    control.stageList[6].isLastTime=true;
+    control.stageList[6].lastTime=100;
     control.currentStage = control.stageList[5];
   }
 };
@@ -189,7 +253,7 @@ control.gameStart = function (level) {
     if (count == 1) {
       control.initialize(control.level);
     }
-    if (bgm.currentTime == 0) bgm.play();
+    if (bgm.currentTime == 0 ) bgm.play();
     if (background.currentTime == 0) background.play();
     plane.enemyBirth(control.level, count, control.currentStage);
     control.currentStage = control.currentStage.nextStage(
@@ -202,7 +266,8 @@ control.gameStart = function (level) {
       trycvs.c.clearRect(0, 0, trycvs.canvas.width, trycvs.canvas.height);
       if (control.gameWin()) {
         count = 0;
-        control.reStart();
+        control.returnMenu();
+        clearInterval(playTime);
       } else {
         clearInterval(playTime);
         window.open("about:blank", "_self").close();
@@ -218,7 +283,7 @@ control.gameStart = function (level) {
     }
     //self
     let self = plane.self;
-    plane.selfMove(self);
+    if(plane.selfMove(self)=="protect") protectStartCount = count;
     self.show(protectStartCount, count);
     self.shoot(count);
     self.death();
@@ -247,4 +312,20 @@ control.gameStart = function (level) {
       }
     }
   }, 10);
+  return;
 };
+
+control.returnMenu=function(){
+  let gameMenu=document.getElementsByClassName("gameMenu");
+  for (let i=0;i<gameMenu.length;i++){
+    gameMenu[i].style.visibility="visible";
+  }
+  let gaming=document.getElementsByClassName("gaming");
+  for (let i=0;i<gaming.length;i++){
+    gaming[i].style.visibility="hidden";
+  }
+  bgm.pause();
+  bgm.currentTime=0;
+  background.pause();
+  background.currentStage=0;
+}
