@@ -1,6 +1,10 @@
 # CHANGELOG
 This repository provides a Flight Shooting Game demo developed with HTML5.
 
+## Version 1.2
+制作了六个关卡并添加了贴图；
+待补充：平衡性调整，窗口自适应，存档和立绘等。
+
 ## Version 1.1
 制作了武器系统及武器的战损/恢复
 添加技能和武器介绍文字；
